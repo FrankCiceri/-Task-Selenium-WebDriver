@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Support.UI;
 
-namespace _Task__Selenium_WebDriver
+namespace Task__Selenium_WebDriver
 {
     public class HelpingMethods
     {

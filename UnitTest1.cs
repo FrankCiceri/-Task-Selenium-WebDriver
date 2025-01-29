@@ -6,7 +6,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
 
-namespace _Task__Selenium_WebDriver
+namespace Task__Selenium_WebDriver
 {
     public class Tests
     {
