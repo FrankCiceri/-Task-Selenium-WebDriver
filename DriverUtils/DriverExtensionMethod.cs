@@ -1,33 +1,37 @@
-﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Task__Selenium_WebDriver.DriverUtils;
 
+namespace Selenium_WebDriver.DriverUtils;
 
-namespace webdriver_task_3.DriverAddition
+public static class DriverExtensionMethod
 {
-    public static class DriverExtensionMethod
-    { 
+    public static IWebElement WaitElementToBeVisible(this WebDriverWait wait, By locator)
+    {
+        return wait.Until(ExpectedConditions.ElementIsVisible(locator));
+    }
 
-        public static void WaitElementToBeVisible(this WebDriverWait wait, By locator) {
-            
-            wait.Until(ExpectedConditions.ElementIsVisible(locator));
-        }
+    public static IWebElement WaitForElementToExist(this WebDriverWait wait, By locator)
+    {
+        return wait.Until(ExpectedConditions.ElementExists(locator));
+    }
 
-        public static void WaitForElementToExist(this WebDriverWait wait, By locator)
-        {
-            wait.Until(ExpectedConditions.ElementExists(locator));
-        }
+    public static IWebElement WaitUntilElementIsClickable(this WebDriverWait wait, By locator)
+    {
+        return wait.Until(ExpectedConditions.ElementToBeClickable(locator));
+    }
 
-        public static void WaitUntilElementIsClickable(this WebDriverWait wait, By locator)
-        {
-            wait.Until(ExpectedConditions.ElementToBeClickable(locator));          
-        }
+    public static IWebElement WaitFindElement(this WebDriverWait wait, By locator)
+    {
+        return wait.Until(d => d.FindElement(locator));
+    }
 
+    public static void ActionPressEscape(this DriverManager driverManager)
+    {
+        new Actions(driverManager.GetDriver())
+            .SendKeys(Keys.Escape)
+            .Perform();
     }
 }

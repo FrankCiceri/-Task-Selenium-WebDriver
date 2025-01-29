@@ -1,23 +1,17 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Edge;
-using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.PageObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace webdriver_task_3.DriverAddition
+
+namespace Task__Selenium_WebDriver.DriverUtils
 {
-        
+
     public class DriverManager
     {
-        protected readonly IWebDriver driver;
-        public WebDriverWait shortWait;
-        public WebDriverWait longWait;
+        private readonly WebDriverWait shortWait;
+        private readonly WebDriverWait longWait;
+
+        private readonly IWebDriver driver;
 
         public DriverManager()
         {
@@ -27,25 +21,27 @@ namespace webdriver_task_3.DriverAddition
                 case "chrome":
                     var chromeOptions = new ChromeOptions();
                     this.driver = new ChromeDriver(chromeOptions);
-                    break;                              
+                    break;
                 default:
                     throw new NotSupportedException($"Unsupported browser: {browser}, check .runsettings");
             }
 
-
-            shortWait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(3))
+            this.shortWait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(3))
             {
-                PollingInterval = TimeSpan.FromSeconds(0.25)
+                PollingInterval = TimeSpan.FromSeconds(0.25),
             };
 
-            longWait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(10))
+            this.longWait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(10))
             {
-                PollingInterval = TimeSpan.FromSeconds(0.5)
+                PollingInterval = TimeSpan.FromSeconds(0.5),
             };
 
             this.driver.Manage().Window.Maximize();
         }
 
+        public WebDriverWait LongWait => this.longWait;
+
+        public WebDriverWait ShortWait => this.shortWait;
 
         public IWebDriver GetDriver()
         {
@@ -64,8 +60,5 @@ namespace webdriver_task_3.DriverAddition
             this.driver.Close();
             this.driver.Dispose();
         }
-
-              
-
     }
 }
