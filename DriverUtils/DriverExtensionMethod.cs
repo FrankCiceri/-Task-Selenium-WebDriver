@@ -64,6 +64,25 @@ public static class DriverExtensionMethod
             .Perform();
     }
 
+    public static bool IsElementVisible(this DriverManager driverManager, By locator)
+    {
+        try
+        {
+            var elements = driverManager.GetDriver().FindElements(locator);
+
+            if (elements.Count == 0)
+            {
+                return false;
+            }
+
+            return elements[0].Displayed;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
+
     public static void AcceptCookies(this DriverManager driverManager)
     {
         try

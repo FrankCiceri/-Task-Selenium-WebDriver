@@ -22,7 +22,6 @@ namespace Selenium_WebDriver.PageObjects.SearchPage
             this.longWait = driverManager.LongWait;
         }
 
-
         public bool ValidateLinksContain(string searchString)
         {
             this.WaitSearchResults();

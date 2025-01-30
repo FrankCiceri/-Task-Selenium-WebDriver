@@ -33,7 +33,10 @@ namespace Selenium_WebDriver
             header.ClickCareersLink();
 
             var careersPage = new CareerPage(this.driverManager);
-            careersPage.PerformJobSearch(programmingLanguage, location);
+            careersPage.EnterSearchKeyword(programmingLanguage);
+            careersPage.SelectLocationFromDropdown(location);
+            careersPage.ClickRemoteLabel();
+            careersPage.ClickSearchButton();
             this.driverManager.AcceptCookies();
             careersPage.SortJobsByDate();
             careersPage.ApplyToFirstJob();
@@ -52,8 +55,8 @@ namespace Selenium_WebDriver
             header.ClickHeaderMagnifier();
             header.WaitHeaderSearchPanelToDeploy();
             this.driverManager.AcceptCookies();
-            header.EnterHeaderSearch(searchValue);
-            header.ClickHeaderSearchButton();
+            header.EnterHeaderPanelSearch(searchValue);
+            header.ClickHeaderPanelSearchButton();
 
             var searchPage = new SearchPage(this.driverManager);
             var result = searchPage.ValidateLinksContain(searchValue);

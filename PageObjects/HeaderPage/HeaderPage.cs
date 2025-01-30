@@ -36,7 +36,7 @@ namespace Selenium_WebDriver.PageObjects
             this.longWait.WaitUntilElementExists(this.headerSearchPanelBy);
         }
 
-        public void EnterHeaderSearch(string searchString)
+        public void EnterHeaderPanelSearch(string searchString)
         {
             var searchField = this.shortWait.WaitFindElement(this.headerSearchTextfieldBy);
             this.driverManager.GoToElementAndClick(searchField);
@@ -47,7 +47,7 @@ namespace Selenium_WebDriver.PageObjects
                 .Perform();
         }
 
-        public void ClickHeaderSearchButton()
+        public void ClickHeaderPanelSearchButton()
         {
             var searchButton = this.shortWait.WaitUntilElementIsClickable(this.headerPanelFindButtonBy);
             searchButton.Click();

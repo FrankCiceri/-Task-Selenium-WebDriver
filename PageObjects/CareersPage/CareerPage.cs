@@ -20,38 +20,33 @@ namespace Selenium_WebDriver.PageObjects.CareersPage
             this.longWait = driverManager.LongWait;
         }
 
-        public void PerformJobSearch(string keyword, string location)
+        public void EnterSearchKeyword(string keyword)
         {
             CheckArgumentIsNull(keyword, nameof(keyword));
-            CheckArgumentIsNull(location, nameof(location));
-
             var searchFieldElement = this.shortWait.WaitFindElement(this.careerSearchKeywordFieldBy);
             searchFieldElement.SendKeys(keyword);
+            this.CloseSuggestionsMenuIfVisible();
+        }
 
-            var menuIsDeployed = false;
-            try
-            {
-                this.shortWait.WaitUntilElementIsVisible(this.careerSuggestionsMenuBy);
-            }
-            catch (Exception)
-            {
-                menuIsDeployed = true;
-            }
-
-            if (menuIsDeployed)
-            {
-                this.driverManager.ActionPressEscape();
-            }
+        public void SelectLocationFromDropdown(string location)
+        {
+            CheckArgumentIsNull(location, nameof(location));
 
             var locationDropdownElement = this.shortWait.WaitFindElement(this.careerLocationDropdownBy);
             locationDropdownElement.Click();
 
             var selectedLocationElement = this.SelectLocation(location);
             selectedLocationElement.Click();
+        }
 
+        public void ClickRemoteLabel()
+        {
             var remoteLabelElement = this.shortWait.WaitUntilElementIsClickable(this.careerRemoteLabelBy);
             remoteLabelElement.Click();
+        }
 
+        public void ClickSearchButton()
+        {
             var searchButtonElement = this.shortWait.WaitFindElement(this.careerSearchButtonBy);
             searchButtonElement.Click();
         }

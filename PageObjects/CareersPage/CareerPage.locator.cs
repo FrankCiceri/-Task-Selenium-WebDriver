@@ -13,7 +13,7 @@ public partial class CareerPage
     private static readonly string CareerDateFilterButtonLocator = "[title='Date']";
     private static readonly string CareerPreloaderLocator = "preloader";
     private static readonly string CareerFirstResultLocator = "li.search-result__item:first-of-type";
-    private static readonly string CareerFirstResultApplyLocator = "li.search-result__item:first-of-type .search-result__item-apply-23";    
+    private static readonly string CareerFirstResultApplyLocator = "li.search-result__item:first-of-type .search-result__item-apply-23";
 
     private readonly By careerSearchKeywordFieldBy = By.Id(CareerSearchKeywordFieldLocator);
     private readonly By careerSuggestionsMenuBy = By.CssSelector(CareerSuggestionsMenuLocator);
