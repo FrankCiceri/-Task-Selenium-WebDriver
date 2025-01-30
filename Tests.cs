@@ -16,7 +16,6 @@ namespace Selenium_WebDriver
     public class Tests
     {
         private DriverManager driverManager;
-        private HelpingMethods helper;
 
         [SetUp]
         public void Setup()
