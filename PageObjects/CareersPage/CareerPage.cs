@@ -55,5 +55,14 @@ namespace Task__Selenium_WebDriver.PageObjects.CareersPage
             var searchButtonElement = this.shortWait.WaitFindElement(this.careerSearchButtonBy);
             searchButtonElement.Click();
         }
+
+        public void SortJobsByDate()
+        {
+            var dateSortingButton = this.longWait.WaitUntilElementIsClickable(this.careerDateFilterButtonBy);
+            this.driverManager.GoToElementAndClick(dateSortingButton);
+
+            this.shortWait.WaitUntilAttributeContains(this.careerPreloaderBy, "style", "display: block;");
+            this.shortWait.WaitUntilAttributeContains(this.careerPreloaderBy, "style", "display: none;");
+        }
     }
 }
