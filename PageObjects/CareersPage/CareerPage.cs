@@ -64,5 +64,14 @@ namespace Task__Selenium_WebDriver.PageObjects.CareersPage
             this.shortWait.WaitUntilAttributeContains(this.careerPreloaderBy, "style", "display: block;");
             this.shortWait.WaitUntilAttributeContains(this.careerPreloaderBy, "style", "display: none;");
         }
+
+        public void ApplyToFirstJob()
+        {
+            var firstElement = this.longWait.WaitUntilElementIsClickable(this.careerFirstResultBy);
+            this.driverManager.GoToElement(firstElement);
+
+            var applyButton = this.longWait.WaitUntilElementIsClickable(this.careerFirstResultApplyBy);
+            this.driverManager.GoToElementAndClick(applyButton);
+        }
     }
 }

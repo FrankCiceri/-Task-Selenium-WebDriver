@@ -28,6 +28,13 @@ public static class DriverExtensionMethod
         return wait.Until(d => d.FindElement(locator));
     }
 
+    public static void GoToElement(this DriverManager driverManager, IWebElement webElement)
+    {
+        new Actions(driverManager.GetDriver())
+            .MoveToElement(webElement)
+            .Perform();
+    }
+
     public static void GoToElementAndClick(this DriverManager driverManager, IWebElement webElement)
     {
         new Actions(driverManager.GetDriver())
