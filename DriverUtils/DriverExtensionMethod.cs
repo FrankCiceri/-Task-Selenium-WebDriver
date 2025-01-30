@@ -2,13 +2,13 @@
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
-using Task__Selenium_WebDriver.DriverUtils;
+using Selenium_WebDriver.DriverUtils;
 
 namespace Selenium_WebDriver.DriverUtils;
 
 public static class DriverExtensionMethod
 {
-    public static IWebElement WaitElementToBeVisible(this WebDriverWait wait, By locator)
+    public static IWebElement WaitUntilElementIsVisible(this WebDriverWait wait, By locator)
     {
         return wait.Until(ExpectedConditions.ElementIsVisible(locator));
     }
@@ -26,6 +26,11 @@ public static class DriverExtensionMethod
     public static IWebElement WaitFindElement(this WebDriverWait wait, By locator)
     {
         return wait.Until(d => d.FindElement(locator));
+    }
+
+    public static IEnumerable<IWebElement> WaitFindElements(this WebDriverWait wait, By locator)
+    {
+        return wait.Until(d => d.FindElements(locator));
     }
 
     public static void GoToElement(this DriverManager driverManager, IWebElement webElement)
@@ -57,5 +62,20 @@ public static class DriverExtensionMethod
         new Actions(driverManager.GetDriver())
             .SendKeys(Keys.Escape)
             .Perform();
+    }
+
+    public static void AcceptCookies(this DriverManager driverManager)
+    {
+        try
+        {
+            var acceptButton = driverManager.ShortWait
+                .Until(ExpectedConditions.ElementToBeClickable(
+                    By.Id("onetrust-accept-btn-handler")));
+            acceptButton.Click();
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Cookies did not appear");
+        }
     }
 }

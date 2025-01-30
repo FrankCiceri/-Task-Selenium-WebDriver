@@ -164,7 +164,7 @@ namespace Task__Selenium_WebDriver
         {
             longWait.Until(ExpectedConditions.ElementExists(
                 By.CssSelector(".header-search__panel.opened")
-            ));           
+            ));
         }
 
         public void EnterMainPageSearch(string searchString)

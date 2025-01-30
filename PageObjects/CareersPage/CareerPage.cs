@@ -1,10 +1,10 @@
 ﻿using OpenQA.Selenium;
 using Selenium_WebDriver.DriverUtils;
 using SeleniumExtras.WaitHelpers;
-using Task__Selenium_WebDriver.DriverUtils;
-using static webdriver_task_3.ExtraClass.ArgumentChecker;
+using Selenium_WebDriver.DriverUtils;
+using static  Selenium_WebDriver.ExtraClass.ArgumentChecker;
 
-namespace Task__Selenium_WebDriver.PageObjects.CareersPage
+namespace Selenium_WebDriver.PageObjects.CareersPage
 {
     public partial class CareerPage
     {
@@ -31,7 +31,7 @@ namespace Task__Selenium_WebDriver.PageObjects.CareersPage
             var menuIsDeployed = false;
             try
             {
-                this.shortWait.WaitElementToBeVisible(this.careerSuggestionsMenuBy);
+                this.shortWait.WaitUntilElementIsVisible(this.careerSuggestionsMenuBy);
             }
             catch (Exception)
             {

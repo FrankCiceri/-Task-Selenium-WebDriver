@@ -2,10 +2,8 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
-
-namespace Task__Selenium_WebDriver.DriverUtils
+namespace Selenium_WebDriver.DriverUtils
 {
-
     public class DriverManager
     {
         private readonly WebDriverWait shortWait;
@@ -50,7 +48,10 @@ namespace Task__Selenium_WebDriver.DriverUtils
 
         public void GoToUrl(string url)
         {
-            if (string.IsNullOrEmpty(url)) { throw new ArgumentNullException(nameof(url), "url is empty or null"); }
+            if (string.IsNullOrEmpty(url))
+            {
+                throw new ArgumentNullException(nameof(url), "url is empty or null");
+            }
 
             this.driver.Navigate().GoToUrl(url);
         }

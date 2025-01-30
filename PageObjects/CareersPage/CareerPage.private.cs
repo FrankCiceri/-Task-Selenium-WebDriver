@@ -1,9 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using Selenium_WebDriver.DriverUtils;
-using Task__Selenium_WebDriver.DriverUtils;
 
-namespace Task__Selenium_WebDriver.PageObjects.CareersPage
+namespace Selenium_WebDriver.PageObjects.CareersPage
 {
     public partial class CareerPage
     {

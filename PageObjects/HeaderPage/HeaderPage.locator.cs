@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace Task__Selenium_WebDriver.PageObjects
+namespace Selenium_WebDriver.PageObjects
 {
     public partial class HeaderPage
     {

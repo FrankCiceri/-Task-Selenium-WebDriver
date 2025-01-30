@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace webdriver_task_3.ExtraClass
+namespace Selenium_WebDriver.ExtraClass
 {
     public static class ArgumentChecker
     {
