@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using Selenium_WebDriver.DriverUtils;
 
 namespace Selenium_WebDriver.PageObjects

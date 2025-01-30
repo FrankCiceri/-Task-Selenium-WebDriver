@@ -185,7 +185,6 @@ namespace Task__Selenium_WebDriver
 
         public bool ValidateLinksContain(string searchString)
         {
-
             WaitSearchResults();
 
             var links = driver.FindElements(By.CssSelector(".search-results__items a"));

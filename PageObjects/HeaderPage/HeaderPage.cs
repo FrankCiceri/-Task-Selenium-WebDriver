@@ -1,4 +1,7 @@
-﻿using Selenium_WebDriver.DriverUtils;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using Selenium_WebDriver.DriverUtils;
+using SeleniumExtras.WaitHelpers;
 
 namespace Selenium_WebDriver.PageObjects
 {
@@ -20,6 +23,34 @@ namespace Selenium_WebDriver.PageObjects
         {
             var careersButton = this.longWait.WaitUntilElementIsClickable(this.headerCareersButtonBy);
             careersButton.Click();
+        }
+
+        public void ClickHeaderMagnifier()
+        {
+            var magnifierElement = this.longWait.WaitUntilElementIsClickable(this.headerMagnifierBy);
+            magnifierElement.Click();
+        }
+
+        public void WaitHeaderSearchPanelToDeploy()
+        {
+            this.longWait.WaitUntilElementExists(this.headerSearchPanelBy);
+        }
+
+        public void EnterHeaderSearch(string searchString)
+        {
+            var searchField = this.shortWait.WaitFindElement(this.headerSearchTextfieldBy);
+            this.driverManager.GoToElementAndClick(searchField);
+
+            new Actions(this.driverManager.GetDriver())
+                .Pause(TimeSpan.FromSeconds(1))
+                .SendKeys(searchString)
+                .Perform();
+        }
+
+        public void ClickHeaderSearchButton()
+        {
+            var searchButton = this.shortWait.WaitUntilElementIsClickable(this.headerPanelFindButtonBy);
+            searchButton.Click();
         }
     }
 }

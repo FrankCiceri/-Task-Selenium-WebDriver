@@ -13,7 +13,7 @@ public static class DriverExtensionMethod
         return wait.Until(ExpectedConditions.ElementIsVisible(locator));
     }
 
-    public static IWebElement WaitForElementToExist(this WebDriverWait wait, By locator)
+    public static IWebElement WaitUntilElementExists(this WebDriverWait wait, By locator)
     {
         return wait.Until(ExpectedConditions.ElementExists(locator));
     }

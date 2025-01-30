@@ -7,6 +7,7 @@ using Selenium_WebDriver.DriverUtils;
 using Selenium_WebDriver.PageObjects;
 using Selenium_WebDriver.PageObjects.CareersPage;
 using Selenium_WebDriver.PageObjects.JobPage;
+using Selenium_WebDriver.PageObjects.SearchPage;
 using SeleniumExtras.WaitHelpers;
 using Task__Selenium_WebDriver;
 
@@ -40,7 +41,7 @@ namespace Selenium_WebDriver
 
             var jobPage = new JobPage(this.driverManager);
             var result = jobPage.ValidateJobPageContains(programmingLanguage);
-            Assert.That(result ,Is.True);
+            Assert.That(result, Is.True);
         }
 
         [TestCase("Automation")]
@@ -48,19 +49,22 @@ namespace Selenium_WebDriver
         [TestCase("BLOCKCHAIN")]
         public void Test2(string searchValue)
         {
-            helper.ClickMainPageMagnifier();
-            helper.WaitMainPageSearchPanelToDeploy();
-            helper.AcceptCookies();
-            helper.EnterMainPageSearch(searchValue);
-            helper.ClickMainPageSearchButton();
-            var result = helper.ValidateLinksContain(searchValue);
+            var header = new HeaderPage(this.driverManager);
+            header.ClickHeaderMagnifier();
+            header.WaitHeaderSearchPanelToDeploy();
+            this.driverManager.AcceptCookies();
+            header.EnterHeaderSearch(searchValue);
+            header.ClickHeaderSearchButton();
+
+            var searchPage = new SearchPage(this.driverManager);
+            var result = searchPage.ValidateLinksContain(searchValue);
             Assert.That(result, Is.True, $"Not all links contain the inputted word: {searchValue}");
         }
 
         [TearDown]
         public void EndTest()
         {
-            driverManager.ReleaseDriver();
+            this.driverManager.ReleaseDriver();
         }
     }
 }
