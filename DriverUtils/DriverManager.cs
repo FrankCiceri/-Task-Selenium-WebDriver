@@ -8,16 +8,16 @@ namespace Selenium_WebDriver.DriverUtils
     {
         private readonly WebDriverWait shortWait;
         private readonly WebDriverWait longWait;
-
         private readonly IWebDriver driver;
 
-        public DriverManager()
+        public DriverManager(string downloadDirectory)
         {
             var browser = "chrome";
             switch (browser.ToLower())
             {
                 case "chrome":
                     var chromeOptions = new ChromeOptions();
+                    chromeOptions.AddUserProfilePreference("download.default_directory", downloadDirectory);
                     this.driver = new ChromeDriver(chromeOptions);
                     break;
                 default:

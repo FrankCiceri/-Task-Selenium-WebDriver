@@ -1,7 +1,5 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
+﻿using OpenQA.Selenium.Interactions;
 using Selenium_WebDriver.DriverUtils;
-using SeleniumExtras.WaitHelpers;
 
 namespace Selenium_WebDriver.PageObjects
 {
@@ -23,6 +21,12 @@ namespace Selenium_WebDriver.PageObjects
         {
             var careersButton = this.longWait.WaitUntilElementIsClickable(this.headerCareersButtonBy);
             careersButton.Click();
+        }
+
+        public void ClickAboutLink()
+        {
+            var aboutButton = this.longWait.WaitUntilElementIsClickable(this.headerAboutButtonBy);
+            aboutButton.Click();
         }
 
         public void ClickHeaderMagnifier()

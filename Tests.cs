@@ -1,27 +1,25 @@
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.DevTools.V130.Debugger;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 using Selenium_WebDriver.DriverUtils;
 using Selenium_WebDriver.PageObjects;
 using Selenium_WebDriver.PageObjects.CareersPage;
 using Selenium_WebDriver.PageObjects.JobPage;
 using Selenium_WebDriver.PageObjects.SearchPage;
-using SeleniumExtras.WaitHelpers;
-using Task__Selenium_WebDriver;
+using Selenium_WebDriver.Utils;
+
 
 namespace Selenium_WebDriver
 {
     public class Tests
     {
+        private readonly string downloadDirectory = "C:\\Downloads";
         private DriverManager driverManager;
+        private DownloadUtils downloadUtil;
 
         [SetUp]
         public void Setup()
         {
-            this.driverManager = new DriverManager();
+            this.driverManager = new DriverManager(this.downloadDirectory);
             this.driverManager.GoToUrl("https://www.epam.com/");
+            this.downloadUtil = new DownloadUtils(this.downloadDirectory);
         }
 
         [TestCase("Java", "All Locations")]
@@ -63,9 +61,31 @@ namespace Selenium_WebDriver
             Assert.That(result, Is.True, $"Not all links contain the inputted word: {searchValue}");
         }
 
+        [TestCase("EPAM_Corporate_Overview_Q4_EOY")]
+        public void Test3(string fileName)
+        {
+            var header = new HeaderPage(this.driverManager);
+            var aboutPage = new AboutPage(this.driverManager);
+
+            header.ClickAboutLink();
+            aboutPage.ScrollToAtAGlance();
+            this.driverManager.AcceptCookies();
+            aboutPage.ClickDownloadButton();
+
+            bool isFileDownloaded = this.downloadUtil.WaitForFileDownload(fileName);
+
+            Assert.IsTrue(isFileDownloaded, $"File '{fileName}' was not downloaded.");
+        }
+
+        public void Test4()
+        {
+            throw new NotImplementedException();
+        }
+
         [TearDown]
         public void EndTest()
         {
+            this.downloadUtil.EmptyDownloadsFolder();
             this.driverManager.ReleaseDriver();
         }
     }

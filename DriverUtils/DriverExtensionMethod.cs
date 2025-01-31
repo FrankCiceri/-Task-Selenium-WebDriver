@@ -3,6 +3,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using Selenium_WebDriver.DriverUtils;
+using System.Runtime.CompilerServices;
 
 namespace Selenium_WebDriver.DriverUtils;
 
@@ -64,6 +65,12 @@ public static class DriverExtensionMethod
             .Perform();
     }
 
+    public static void ScrollToElement(this DriverManager driverManager, IWebElement elem)
+    {
+        IJavaScriptExecutor je = (IJavaScriptExecutor)driverManager.GetDriver();
+        je.ExecuteScript("arguments[0].scrollIntoView(false);", elem);
+    }
+
     public static bool IsElementVisible(this DriverManager driverManager, By locator)
     {
         try
@@ -85,12 +92,19 @@ public static class DriverExtensionMethod
 
     public static void AcceptCookies(this DriverManager driverManager)
     {
+        By acceptCookieButton = By.Id("onetrust-accept-btn-handler");
         try
         {
             var acceptButton = driverManager.ShortWait
-                .Until(ExpectedConditions.ElementToBeClickable(
-                    By.Id("onetrust-accept-btn-handler")));
-            acceptButton.Click();
+                .Until(ExpectedConditions.ElementToBeClickable(acceptCookieButton));
+
+            bool isVisible = true;
+            while (isVisible)
+            {
+                acceptButton.Click();
+                isVisible = driverManager.LongWait
+                                    .Until(ExpectedConditions.InvisibilityOfElementLocated(acceptCookieButton));
+            }
         }
         catch (Exception)
         {
