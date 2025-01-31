@@ -6,6 +6,7 @@ namespace Selenium_WebDriver.PageObjects
     {
         private static readonly string HeaderCareersButtonLocator = "//span/a[text()='Careers']";
         private static readonly string HeaderAboutButtonLocator = "//span/a[text()='About']";
+        private static readonly string HeaderInsightsButtonLocator = "//span/a[text()='Insights']";
         private static readonly string HeaderMagnifierLocator = ".header-search__button";
         private static readonly string HeaderSearchPanelLocator = ".header-search__panel.opened";
         private static readonly string HeaderSearchTextfieldLocator = "q";
@@ -13,6 +14,7 @@ namespace Selenium_WebDriver.PageObjects
 
         private readonly By headerCareersButtonBy = By.XPath(HeaderCareersButtonLocator);
         private readonly By headerAboutButtonBy = By.XPath(HeaderAboutButtonLocator);
+        private readonly By headerInsightsButtonBy = By.XPath(HeaderInsightsButtonLocator);
         private readonly By headerMagnifierBy = By.CssSelector(HeaderMagnifierLocator);
         private readonly By headerSearchPanelBy = By.CssSelector(HeaderSearchPanelLocator);
         private readonly By headerSearchTextfieldBy = By.Name(HeaderSearchTextfieldLocator);

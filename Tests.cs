@@ -1,6 +1,8 @@
 using Selenium_WebDriver.DriverUtils;
 using Selenium_WebDriver.PageObjects;
 using Selenium_WebDriver.PageObjects.CareersPage;
+using Selenium_WebDriver.PageObjects.DetailPage;
+using Selenium_WebDriver.PageObjects.InsightPage;
 using Selenium_WebDriver.PageObjects.JobPage;
 using Selenium_WebDriver.PageObjects.SearchPage;
 using Selenium_WebDriver.Utils;
@@ -77,9 +79,21 @@ namespace Selenium_WebDriver
             Assert.IsTrue(isFileDownloaded, $"File '{fileName}' was not downloaded.");
         }
 
-        public void Test4()
+        [TestCase(2)]
+        public void Test4(int numSwipes)
         {
-            throw new NotImplementedException();
+            var header = new HeaderPage(this.driverManager);
+            var insightPage = new InsightPage(this.driverManager);
+            var detailPage = new DetailPage(this.driverManager);
+
+            header.ClickInsightsLink();
+            insightPage.SwipeFirstCarouselNTimes(numSwipes);
+            var carouselTitle = insightPage.GetCarouselCurrentActiveElementText();
+            insightPage.ClickCarouselReadMore();
+
+            var detailPageTitle = detailPage.GetHeaderTitleText();
+
+            Assert.That(detailPageTitle, Is.EqualTo(carouselTitle));
         }
 
         [TearDown]

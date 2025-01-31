@@ -29,6 +29,12 @@ namespace Selenium_WebDriver.PageObjects
             aboutButton.Click();
         }
 
+        public void ClickInsightsLink()
+        {
+            var insightsButton = this.longWait.WaitUntilElementIsClickable(this.headerInsightsButtonBy);
+            insightsButton.Click();
+        }
+
         public void ClickHeaderMagnifier()
         {
             var magnifierElement = this.longWait.WaitUntilElementIsClickable(this.headerMagnifierBy);
