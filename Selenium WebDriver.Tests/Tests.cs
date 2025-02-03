@@ -7,27 +7,24 @@ using Selenium_WebDriver.Business.PageObjects.InsightPage;
 using Selenium_WebDriver.Business.PageObjects.JobPage;
 using Selenium_WebDriver.Core.Core;
 using Selenium_WebDriver.Core.Utils;
+using Selenium_WebDriver.Core.Interfaces;
 
 using Selenium_WebDriver.PageObjects.SearchPage;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Selenium_WebDriver.Tests
 {
-    public class Tests
+    public class Tests : TestBase
     {
-        private DriverContext driverContext;
+        private IDriverContext driverContext;
         private DownloadUtils downloadUtil;
-
-        [OneTimeSetUp]
-        public void OneTimeSetup()
-        {
-            this.driverContext = DriverContext.Instance; 
-        }
 
         [SetUp]
         public void Setup()
         {
+            this.driverContext = this.ServiceProvider.GetRequiredService<IDriverContext>();
             this.driverContext.GoToUrl("https://www.epam.com/");
-            this.downloadUtil = new DownloadUtils();
+            this.downloadUtil = this.ServiceProvider.GetRequiredService<DownloadUtils>();
         }
 
         [TestCase("Java", "All Locations")]
@@ -102,7 +99,7 @@ namespace Selenium_WebDriver.Tests
             Assert.That(detailPageTitle, Is.EqualTo(carouselTitle));
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public void EndTest()
         {
             this.downloadUtil.EmptyDownloadsFolder();

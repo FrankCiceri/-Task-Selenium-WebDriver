@@ -1,21 +1,20 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using Selenium_WebDriver.Core.Core;
+using Selenium_WebDriver.Core.Interfaces;
 
 namespace Selenium_WebDriver.Business.PageObjects.InsightPage
 {
     public partial class InsightPage
     {
-        public InsightPage(DriverContext driverManager)
+        public InsightPage(IDriverContext driverContext)
         {
-            if (driverManager is null)
+            if (driverContext is null)
             {
-                throw new ArgumentNullException(nameof(driverManager));
+                throw new ArgumentNullException(nameof(driverContext));
             }
 
-            this.driverContext = driverManager;
-            this.shortWait = driverManager.ShortWait;
-            this.longWait = driverManager.LongWait;
+            this.driverContext = driverContext;
         }
 
         public void SwipeFirstCarouselNTimes(int numberOfSwipes)
@@ -30,7 +29,7 @@ namespace Selenium_WebDriver.Business.PageObjects.InsightPage
                        .Release()
                        .Perform();
 
-                this.shortWait.Until(d => !activeSlide.GetAttribute("class").Contains("active"));
+                this.driverContext.ShortWait.Until(d => !activeSlide.GetAttribute("class").Contains("active"));
 
                 activeSlide = this.WaitCarouselToBeClickable();
             }
@@ -38,13 +37,13 @@ namespace Selenium_WebDriver.Business.PageObjects.InsightPage
 
         public string GetCarouselCurrentActiveElementText()
         {
-            var carouselCurrentActiveElement = this.shortWait.WaitUntilElementIsVisible(this.insightCarouselCurrentActiveTextBy);
+            var carouselCurrentActiveElement = this.driverContext.ShortWait.WaitUntilElementIsVisible(this.insightCarouselCurrentActiveTextBy);
             return carouselCurrentActiveElement.Text;
         }
 
         public void ClickCarouselReadMore()
         {
-            var readMoreButton = this.shortWait.WaitUntilElementIsClickable(this.insightCarouselReadMoreBy);
+            var readMoreButton = this.driverContext.ShortWait.WaitUntilElementIsClickable(this.insightCarouselReadMoreBy);
             readMoreButton.Click();
         }
     }

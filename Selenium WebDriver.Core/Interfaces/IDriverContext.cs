@@ -11,13 +11,13 @@ namespace Selenium_WebDriver.Core.Interfaces
 {
     public interface IDriverContext
     {
-        IWebDriver Driver { get; }
-
         WebDriverWait ShortWait { get; }
 
         WebDriverWait LongWait { get; }
 
         IWebDriver GetDriver();
+
+        static IDriverContext Instance { get; }
 
         void GoToUrl(string url);
 
