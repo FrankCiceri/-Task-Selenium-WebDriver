@@ -1,0 +1,90 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Selenium WebDriver.Core/1.0.0": {
+        "dependencies": {
+          "Selenium.WebDriver": "4.28.0",
+          "Selenium.WebDriver.ChromeDriver": "132.0.6834.11000",
+          "SeleniumExtras.WaitHelpers": "1.0.2",
+          "StyleCop.Analyzers": "1.2.0-beta.556"
+        },
+        "runtime": {
+          "Selenium WebDriver.Core.dll": {}
+        }
+      },
+      "Selenium.WebDriver/4.28.0": {
+        "runtime": {
+          "lib/net8.0/WebDriver.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Selenium.WebDriver.ChromeDriver/132.0.6834.11000": {},
+      "SeleniumExtras.WaitHelpers/1.0.2": {
+        "dependencies": {
+          "Selenium.WebDriver": "4.28.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/SeleniumExtras.WaitHelpers.dll": {
+            "assemblyVersion": "1.0.2.0",
+            "fileVersion": "1.0.2.0"
+          }
+        }
+      },
+      "StyleCop.Analyzers/1.2.0-beta.556": {
+        "dependencies": {
+          "StyleCop.Analyzers.Unstable": "1.2.0.556"
+        }
+      },
+      "StyleCop.Analyzers.Unstable/1.2.0.556": {}
+    }
+  },
+  "libraries": {
+    "Selenium WebDriver.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Selenium.WebDriver/4.28.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-g4iZWBHQH5dObJQKcKXsol8yFJPIkXhVdn/8P726d4OmpHgQ9aYSwtTCWo+FUYHIkMS+haItgeOT6hilmLeHNw==",
+      "path": "selenium.webdriver/4.28.0",
+      "hashPath": "selenium.webdriver.4.28.0.nupkg.sha512"
+    },
+    "Selenium.WebDriver.ChromeDriver/132.0.6834.11000": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mxJ3pAZ2ZGwXwPTsnSKlQ0kxC/2zSi6CpaTpjPxXFXM1OlRKhlxzgmIrkhe2rKyKj14vtwunCkOf5EvpU+JXrQ==",
+      "path": "selenium.webdriver.chromedriver/132.0.6834.11000",
+      "hashPath": "selenium.webdriver.chromedriver.132.0.6834.11000.nupkg.sha512"
+    },
+    "SeleniumExtras.WaitHelpers/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-de7m30nkZZLkfCncYBdluUpM27AR/Vkk4kiA4HRQbV+fZI3ps4qGIeJCuj8TAMXdMfQik5Rno8xPnFBIod+ebg==",
+      "path": "seleniumextras.waithelpers/1.0.2",
+      "hashPath": "seleniumextras.waithelpers.1.0.2.nupkg.sha512"
+    },
+    "StyleCop.Analyzers/1.2.0-beta.556": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-llRPgmA1fhC0I0QyFLEcjvtM2239QzKr/tcnbsjArLMJxJlu0AA5G7Fft0OI30pHF3MW63Gf4aSSsjc5m82J1Q==",
+      "path": "stylecop.analyzers/1.2.0-beta.556",
+      "hashPath": "stylecop.analyzers.1.2.0-beta.556.nupkg.sha512"
+    },
+    "StyleCop.Analyzers.Unstable/1.2.0.556": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zvn9Mqs/ox/83cpYPignI8hJEM2A93s2HkHs8HYMOAQW0PkampyoErAiIyKxgTLqbbad29HX/shv/6LGSjPJNQ==",
+      "path": "stylecop.analyzers.unstable/1.2.0.556",
+      "hashPath": "stylecop.analyzers.unstable.1.2.0.556.nupkg.sha512"
+    }
+  }
+}
