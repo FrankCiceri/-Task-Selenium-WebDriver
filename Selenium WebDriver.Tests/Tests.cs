@@ -25,6 +25,7 @@ namespace Selenium_WebDriver.Tests
         {
             XmlConfigurator.Configure(new FileInfo("Log.config"));
             this.driverContext = this.ServiceProvider.GetRequiredService<IDriverContext>();
+            LoggerUtil.Info("Initializing Driver");
             this.driverContext.GoToUrl("https://www.epam.com/");
             this.downloadUtil = this.ServiceProvider.GetRequiredService<DownloadUtils>();
         }

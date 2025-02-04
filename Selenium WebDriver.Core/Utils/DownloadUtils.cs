@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,11 +48,13 @@ namespace Selenium_WebDriver.Core.Utils
 
         public void EmptyDownloadsFolder()
         {
-            if (Directory.Exists(downloadDirectory))
+            if (Directory.Exists(this.downloadDirectory))
             {
-                foreach (var file in Directory.GetFiles(downloadDirectory))
+                foreach (var file in Directory.GetFiles(this.downloadDirectory))
                 {
+                    LoggerUtil.Info($"Deleting file: {file}");
                     File.Delete(file);
+                    LoggerUtil.Info($"File {file} deleted.");
                 }
             }
         }

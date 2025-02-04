@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using Selenium_WebDriver.Core.Interfaces;
+using Selenium_WebDriver.Core.Utils;
 
 namespace Selenium_WebDriver.Core.Core
 {
@@ -41,6 +42,7 @@ namespace Selenium_WebDriver.Core.Core
                 throw new ArgumentNullException(nameof(url), "url is empty or null");
             }
 
+            LoggerUtil.Info($"Navigating to {url}");
             this.driver.Navigate().GoToUrl(url);
         }
 
@@ -48,7 +50,9 @@ namespace Selenium_WebDriver.Core.Core
         {
             if (this.driver != null)
             {
+                LoggerUtil.Info($"Stopping Driver Execution");
                 this.driver.Quit();
+                LoggerUtil.Info($"Driver Execution Stopped");
             }
         }
     }
