@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Selenium WebDriver.Business")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ba02747284bef38d8bb75a8e19f447fcc13a5aab")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e510e8449e734b41d7d2b7213fd8b36d977a5e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Selenium WebDriver.Business")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Selenium WebDriver.Business")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
