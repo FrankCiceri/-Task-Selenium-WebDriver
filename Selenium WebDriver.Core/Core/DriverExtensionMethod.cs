@@ -7,8 +7,6 @@ using Selenium_WebDriver.Core.Interfaces;
 using Selenium_WebDriver.Core.Utils;
 using SeleniumExtras.WaitHelpers;
 
-using System.Runtime.CompilerServices;
-
 namespace Selenium_WebDriver.Core.Core;
 
 public static class DriverExtensionMethod

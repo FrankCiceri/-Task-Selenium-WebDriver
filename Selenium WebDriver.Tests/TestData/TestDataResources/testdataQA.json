@@ -1,0 +1,17 @@
+﻿{
+  "Test1": [
+    {
+      "ProgrammingLanguage": "Java",
+      "Location": "All Locations"
+    },
+    {
+      "ProgrammingLanguage": "Python",
+      "Location": "All Locations"
+    }
+  ],
+  "Test2": [
+    {
+      "SearchValue": "Automation"
+    }
+  ]
+}

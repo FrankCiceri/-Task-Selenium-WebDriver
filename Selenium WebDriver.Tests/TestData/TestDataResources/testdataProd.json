@@ -1,0 +1,16 @@
+﻿{
+  "Test1": [
+    {
+      "ProgrammingLanguage": "C#",
+      "Location": "All Locations"
+    }
+  ],
+  "Test2": [
+    {
+      "SearchValue": "Cloud"
+    },
+    {
+      "SearchValue": "BLOCKCHAIN"
+    }
+  ]
+}

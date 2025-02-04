@@ -12,6 +12,7 @@ using Selenium_WebDriver.Business.PageObjects.SearchPage;
 using Selenium_WebDriver.Core.Core;
 using Selenium_WebDriver.Core.Interfaces;
 using Selenium_WebDriver.Core.Utils;
+using Selenium_WebDriver.Tests.TestData;
 
 namespace Selenium_WebDriver.Tests
 {
@@ -30,9 +31,7 @@ namespace Selenium_WebDriver.Tests
             this.downloadUtil = this.ServiceProvider.GetRequiredService<DownloadUtils>();
         }
 
-        [TestCase("Java", "All Locations")]
-        [TestCase("Python", "All Locations")]
-        [TestCase("C#", "All Locations")]
+        [TestCaseSource(typeof(TestDataLoader), nameof(TestDataLoader.LoadTestDataForTest1))]
         public void Test1(string programmingLanguage, string location)
         {
             var header = new HeaderPage(this.driverContext);
@@ -52,9 +51,7 @@ namespace Selenium_WebDriver.Tests
             Assert.That(result, Is.True);
         }
 
-        [TestCase("Automation")]
-        [TestCase("Cloud")]
-        [TestCase("BLOCKCHAIN")]
+        [TestCaseSource(typeof(TestDataLoader),nameof(TestDataLoader.LoadTestDataForTest2))]
         public void Test2(string searchValue)
         {
             var header = new HeaderPage(this.driverContext);
