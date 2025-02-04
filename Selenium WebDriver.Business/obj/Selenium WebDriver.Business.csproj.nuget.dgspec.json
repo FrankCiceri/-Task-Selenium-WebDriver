@@ -141,6 +141,10 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
+            "NUnit": {
+              "target": "Package",
+              "version": "[4.3.2, )"
+            },
             "Selenium.WebDriver": {
               "target": "Package",
               "version": "[4.28.0, )"
@@ -156,6 +160,10 @@
             "StyleCop.Analyzers": {
               "target": "Package",
               "version": "[1.2.0-beta.556, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[9.0.1, )"
             }
           },
           "imports": [

@@ -11,6 +11,7 @@ using Selenium_WebDriver.Core.Utils;
 using Microsoft.Extensions.DependencyInjection;
 using log4net.Config;
 using Selenium_WebDriver.Business.PageObjects.SearchPage;
+using NUnit.Framework.Interfaces;
 
 namespace Selenium_WebDriver.Tests
 {
@@ -80,7 +81,7 @@ namespace Selenium_WebDriver.Tests
 
             bool isFileDownloaded = this.downloadUtil.WaitForFileDownload(fileName);
 
-            Assert.IsTrue(isFileDownloaded, $"File '{fileName}' was not downloaded.");
+            Assert.That(isFileDownloaded, Is.True, $"File '{fileName}' was not downloaded.");
         }
 
         [TestCase(2)]
@@ -103,6 +104,9 @@ namespace Selenium_WebDriver.Tests
         [OneTimeTearDown]
         public void EndTest()
         {
+            var result = TestContext.CurrentContext.Result;
+            TestHandler.TestFinished(result, this.driverContext);
+
             this.downloadUtil.EmptyDownloadsFolder();
             this.driverContext.ReleaseDriver();
         }

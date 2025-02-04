@@ -23,7 +23,6 @@ namespace Selenium_WebDriver.Tests
 
             services.AddSingleton<IDriverFactory, DriverFactory>();
             services.AddSingleton<IWaitFactory, WaitFactory>();
-            services.AddSingleton<ILoggerService, LoggerUtil>();
             services.AddSingleton<IDriverContext, DriverContext>();
             services.AddTransient<DownloadUtils>();
 

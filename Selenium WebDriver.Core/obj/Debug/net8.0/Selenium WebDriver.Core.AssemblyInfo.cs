@@ -11,11 +11,11 @@
 using System;
 using System.Reflection;
 
-[assembly: log4net.Config.XmlConfigurator("ConfigFile=log4net.config", "Watch=true")]
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Selenium WebDriver.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41f317561904c047dbe96bb074e5c610d71d9b6e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+615802f87f19b13933ba5c2e51cd4520e8c2b16b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Selenium WebDriver.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Selenium WebDriver.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

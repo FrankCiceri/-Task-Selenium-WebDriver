@@ -39,3 +39,4 @@ D:\Epam Specialization\Selenium WebDriver Project\Selenium WebDriver.Business\ob
 D:\Epam Specialization\Selenium WebDriver Project\Selenium WebDriver.Business\obj\Debug\net8.0\refint\Selenium WebDriver.Business.dll
 D:\Epam Specialization\Selenium WebDriver Project\Selenium WebDriver.Business\obj\Debug\net8.0\Selenium WebDriver.Business.pdb
 D:\Epam Specialization\Selenium WebDriver Project\Selenium WebDriver.Business\obj\Debug\net8.0\ref\Selenium WebDriver.Business.dll
+D:\Epam Specialization\Selenium WebDriver Project\Selenium WebDriver.Business\bin\Debug\net8.0\Selenium WebDriver.Core.dll.config

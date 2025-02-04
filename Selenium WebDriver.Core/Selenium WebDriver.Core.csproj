@@ -18,17 +18,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="8.0.0" />
+    <PackageReference Include="NUnit" Version="4.3.2" />
     <PackageReference Include="Selenium.WebDriver" Version="4.28.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="132.0.6834.11000" />
     <PackageReference Include="SeleniumExtras.WaitHelpers" Version="1.0.2" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AssemblyAttribute Include="log4net.Config.XmlConfigurator">
-      <_Parameter1>ConfigFile=log4net.config</_Parameter1>
-      <_Parameter2>Watch=true</_Parameter2>
-    </AssemblyAttribute>
-  </ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="9.0.1" />
+  </ItemGroup> 
 
 </Project>
