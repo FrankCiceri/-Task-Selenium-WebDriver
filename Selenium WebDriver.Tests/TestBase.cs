@@ -23,18 +23,19 @@ namespace Selenium_WebDriver.Tests
 
             services.AddSingleton<IDriverFactory, DriverFactory>();
             services.AddSingleton<IWaitFactory, WaitFactory>();
+            services.AddSingleton<ILoggerService, LoggerUtil>();
             services.AddSingleton<IDriverContext, DriverContext>();
             services.AddTransient<DownloadUtils>();
 
             services.AddTransient<Tests>();
 
-            ServiceProvider = services.BuildServiceProvider();
+            this.ServiceProvider = services.BuildServiceProvider();
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            Dispose();
+            this.Dispose();
         }
 
         public void Dispose()

@@ -23,6 +23,14 @@
     </PackageReference>
   </ItemGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;SA1200;SA1601;SA1600</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;SA1200;SA1601;SA1600</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Selenium WebDriver.Business\Selenium WebDriver.Business.csproj" />
     <ProjectReference Include="..\Selenium WebDriver.Core\Selenium WebDriver.Core.csproj" />

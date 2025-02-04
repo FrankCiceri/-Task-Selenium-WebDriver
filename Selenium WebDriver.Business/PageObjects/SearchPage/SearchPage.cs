@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Selenium_WebDriver.PageObjects.SearchPage
+namespace Selenium_WebDriver.Business.PageObjects.SearchPage
 {
     public partial class SearchPage
     {

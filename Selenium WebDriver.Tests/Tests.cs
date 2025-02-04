@@ -6,11 +6,11 @@ using Selenium_WebDriver.Business.PageObjects.HeaderPage;
 using Selenium_WebDriver.Business.PageObjects.InsightPage;
 using Selenium_WebDriver.Business.PageObjects.JobPage;
 using Selenium_WebDriver.Core.Core;
-using Selenium_WebDriver.Core.Utils;
 using Selenium_WebDriver.Core.Interfaces;
-
-using Selenium_WebDriver.PageObjects.SearchPage;
+using Selenium_WebDriver.Core.Utils;
 using Microsoft.Extensions.DependencyInjection;
+using log4net.Config;
+using Selenium_WebDriver.Business.PageObjects.SearchPage;
 
 namespace Selenium_WebDriver.Tests
 {
@@ -22,6 +22,7 @@ namespace Selenium_WebDriver.Tests
         [SetUp]
         public void Setup()
         {
+            XmlConfigurator.Configure(new FileInfo("Log.config"));
             this.driverContext = this.ServiceProvider.GetRequiredService<IDriverContext>();
             this.driverContext.GoToUrl("https://www.epam.com/");
             this.downloadUtil = this.ServiceProvider.GetRequiredService<DownloadUtils>();

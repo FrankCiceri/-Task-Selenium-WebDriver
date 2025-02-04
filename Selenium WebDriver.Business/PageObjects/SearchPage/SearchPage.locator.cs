@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace Selenium_WebDriver.PageObjects.SearchPage
+namespace Selenium_WebDriver.Business.PageObjects.SearchPage
 {
     public partial class SearchPage
     {

@@ -39,14 +39,12 @@ namespace Selenium_WebDriver.Business.PageObjects.CareersPage
 
         public void ClickRemoteLabel()
         {
-            var remoteLabelElement = this.driverContext.ShortWait.WaitUntilElementIsClickable(this.careerRemoteLabelBy);
-            remoteLabelElement.Click();
+            this.driverContext.ShortWaitElementAndClick(this.careerRemoteLabelBy);
         }
 
         public void ClickSearchButton()
         {
-            var searchButtonElement = this.driverContext.ShortWait.WaitFindElement(this.careerSearchButtonBy);
-            searchButtonElement.Click();
+            this.driverContext.ShortWaitElementAndClick(this.careerSearchButtonBy);
         }
 
         public void SortJobsByDate()
