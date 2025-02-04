@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using log4net;
+using log4net.Config;
 using log4net.Core;
 using Selenium_WebDriver.Core.Interfaces;
 
@@ -12,6 +13,18 @@ namespace Selenium_WebDriver.Core.Utils
     public static class LoggerUtil
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(LoggerUtil));
+
+        public static void InitializeLoggerUtil()
+        {
+            string configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log4net.config");
+
+            if (!File.Exists(configPath))
+            {
+                Console.WriteLine($"[Log4net] Config file not found at: {configPath}");
+            }
+
+            XmlConfigurator.Configure(new FileInfo(configPath));
+        }
 
         public static void Debug(string message) => Log.Debug(message);
 
