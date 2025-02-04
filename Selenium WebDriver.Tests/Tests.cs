@@ -1,3 +1,6 @@
+using log4net.Config;
+using Microsoft.Extensions.DependencyInjection;
+using NUnit.Framework.Interfaces;
 using Selenium_WebDriver.Business.PageObjects;
 using Selenium_WebDriver.Business.PageObjects.AboutPage;
 using Selenium_WebDriver.Business.PageObjects.CareersPage;
@@ -5,13 +8,10 @@ using Selenium_WebDriver.Business.PageObjects.DetailPage;
 using Selenium_WebDriver.Business.PageObjects.HeaderPage;
 using Selenium_WebDriver.Business.PageObjects.InsightPage;
 using Selenium_WebDriver.Business.PageObjects.JobPage;
+using Selenium_WebDriver.Business.PageObjects.SearchPage;
 using Selenium_WebDriver.Core.Core;
 using Selenium_WebDriver.Core.Interfaces;
 using Selenium_WebDriver.Core.Utils;
-using Microsoft.Extensions.DependencyInjection;
-using log4net.Config;
-using Selenium_WebDriver.Business.PageObjects.SearchPage;
-using NUnit.Framework.Interfaces;
 
 namespace Selenium_WebDriver.Tests
 {
