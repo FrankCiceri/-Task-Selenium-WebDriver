@@ -1,4 +1,0 @@
-D:\Epam Specialization\Selinuim WebDriver.Utils\obj\Debug\net8.0\Selenium WebDriver.Utils.GeneratedMSBuildEditorConfig.editorconfig
-D:\Epam Specialization\Selinuim WebDriver.Utils\obj\Debug\net8.0\Selenium WebDriver.Utils.AssemblyInfoInputs.cache
-D:\Epam Specialization\Selinuim WebDriver.Utils\obj\Debug\net8.0\Selenium WebDriver.Utils.AssemblyInfo.cs
-D:\Epam Specialization\Selinuim WebDriver.Utils\obj\Debug\net8.0\Selenium WebDriver.Utils.csproj.CoreCompileInputs.cache
