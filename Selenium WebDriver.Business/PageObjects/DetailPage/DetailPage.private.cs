@@ -6,6 +6,6 @@ namespace Selenium_WebDriver.Business.PageObjects.DetailPage
 {
     public partial class DetailPage
     {
-        private readonly IDriverContext driverContext;
+        private readonly IDriverContext _driverContext;
     }
 }

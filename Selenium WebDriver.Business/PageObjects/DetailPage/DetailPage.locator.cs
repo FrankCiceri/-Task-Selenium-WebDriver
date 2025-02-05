@@ -9,8 +9,8 @@ namespace Selenium_WebDriver.Business.PageObjects.DetailPage
 {
     public partial class DetailPage
     {
-        private static readonly string DetailHeaderTitleLocator = "//div[contains(@class,'detail-page23__header')]//div[contains(@class, 'scaling-of-text-wrapper')]";
+        private readonly By _detailHeaderTitleBy = By.XPath("//*[contains(@class, 'scaling-of-text-wrapper')]//span[contains(@class, 'font-size-80-33')]//span[contains(@class, 'museo-sans-light')]");
 
-        private readonly By detailHeaderTitleBy = By.XPath(DetailHeaderTitleLocator);
+        private IWebElement HeaderTitle => _driverContext.GetDriver().FindElement(_detailHeaderTitleBy);
     }
 }

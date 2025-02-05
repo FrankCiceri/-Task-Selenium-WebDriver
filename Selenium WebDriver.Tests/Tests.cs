@@ -18,35 +18,35 @@ namespace Selenium_WebDriver.Tests
 {
     public class Tests : TestBase
     {
-        private IDriverContext driverContext;
+        private IDriverContext _driverContext;
         private DownloadUtils downloadUtil;
 
         [SetUp]
         public void Setup()
         {
             LoggerUtil.InitializeLoggerUtil();
-            this.driverContext = this.ServiceProvider.GetRequiredService<IDriverContext>();
+            this._driverContext = this.ServiceProvider.GetRequiredService<IDriverContext>();
             LoggerUtil.Info("Initializing Driver");
-            this.driverContext.GoToUrl("https://www.epam.com/");
+            this._driverContext.GoToUrl("https://www.epam.com/");
             this.downloadUtil = this.ServiceProvider.GetRequiredService<DownloadUtils>();
         }
 
         [TestCaseSource(typeof(TestDataLoader), nameof(TestDataLoader.LoadTestDataForTest1))]
         public void Test1(string programmingLanguage, string location)
         {
-            var header = new HeaderPage(this.driverContext);
+            var header = new HeaderPage(this._driverContext);
             header.ClickCareersLink();
 
-            var careersPage = new CareerPage(this.driverContext);
+            var careersPage = new CareerPage(this._driverContext);
             careersPage.EnterSearchKeyword(programmingLanguage);
             careersPage.SelectLocationFromDropdown(location);
             careersPage.ClickRemoteLabel();
             careersPage.ClickSearchButton();
-            this.driverContext.AcceptCookies();
+            this._driverContext.AcceptCookies();
             careersPage.SortJobsByDate();
             careersPage.ApplyToFirstJob();
 
-            var jobPage = new JobPage(this.driverContext);
+            var jobPage = new JobPage(this._driverContext);
             var result = jobPage.ValidateJobPageContains(programmingLanguage);
             Assert.That(result, Is.True);
         }
@@ -54,14 +54,13 @@ namespace Selenium_WebDriver.Tests
         [TestCaseSource(typeof(TestDataLoader),nameof(TestDataLoader.LoadTestDataForTest2))]
         public void Test2(string searchValue)
         {
-            var header = new HeaderPage(this.driverContext);
+            var header = new HeaderPage(this._driverContext);
             header.ClickHeaderMagnifier();
-            header.WaitHeaderSearchPanelToDeploy();
-            this.driverContext.AcceptCookies();
+            this._driverContext.AcceptCookies();
             header.EnterHeaderPanelSearch(searchValue);
             header.ClickHeaderPanelSearchButton();
 
-            var searchPage = new SearchPage(this.driverContext);
+            var searchPage = new SearchPage(this._driverContext);
             var result = searchPage.ValidateLinksContain(searchValue);
             Assert.That(result, Is.True, $"Not all links contain the inputted word: {searchValue}");
         }
@@ -69,12 +68,12 @@ namespace Selenium_WebDriver.Tests
         [TestCase("EPAM_Corporate_Overview_Q4_EOY")]
         public void Test3(string fileName)
         {
-            var header = new HeaderPage(this.driverContext);
-            var aboutPage = new AboutPage(this.driverContext);
+            var header = new HeaderPage(this._driverContext);
+            var aboutPage = new AboutPage(this._driverContext);
 
             header.ClickAboutLink();
             aboutPage.ScrollToAtAGlance();
-            this.driverContext.AcceptCookies();
+            this._driverContext.AcceptCookies();
             aboutPage.ClickDownloadButton();
 
             bool isFileDownloaded = this.downloadUtil.WaitForFileDownload(fileName);
@@ -85,13 +84,13 @@ namespace Selenium_WebDriver.Tests
         [TestCase(2)]
         public void Test4(int numSwipes)
         {
-            var header = new HeaderPage(this.driverContext);
-            var insightPage = new InsightPage(this.driverContext);
-            var detailPage = new DetailPage(this.driverContext);
+            var header = new HeaderPage(this._driverContext);
+            var insightPage = new InsightPage(this._driverContext);
+            var detailPage = new DetailPage(this._driverContext);
 
             header.ClickInsightsLink();
-            insightPage.SwipeFirstCarouselNTimes(numSwipes);
-            var carouselTitle = insightPage.GetCarouselCurrentActiveElementText();
+            insightPage.NextSlide(numSwipes);
+            var carouselTitle = insightPage.GetCarouselCurrentActiveElementTitle();
             insightPage.ClickCarouselReadMore();
 
             var detailPageTitle = detailPage.GetHeaderTitleText();
@@ -103,10 +102,10 @@ namespace Selenium_WebDriver.Tests
         public void EndTest()
         {
             var result = TestContext.CurrentContext.Result;
-            TestHandler.TestFinished(result, this.driverContext);
+            TestHandler.TestFinished(result, this._driverContext);
 
             this.downloadUtil.EmptyDownloadsFolder();
-            this.driverContext.ReleaseDriver();
+            this._driverContext.ReleaseDriver();
         }
     }
 }

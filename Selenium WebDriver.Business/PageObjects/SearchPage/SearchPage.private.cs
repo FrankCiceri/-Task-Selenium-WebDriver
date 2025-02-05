@@ -4,14 +4,13 @@ namespace Selenium_WebDriver.Business.PageObjects.SearchPage
 {
     public partial class SearchPage
     {
-        private readonly IDriverContext driverContext;
+        private readonly IDriverContext _driverContext;
 
         private void WaitSearchResults()
         {
-            this.driverContext.LongWait.Until(driver =>
+            this._driverContext.LongWait.Until(driver =>
             {
-                var divResults = driver.FindElement(this.searchResultBy);
-                var elementsInsideDiv = divResults.FindElements(this.searchResultArticleBy);
+                var elementsInsideDiv = ArticleTagsInResultsContainer;
                 return elementsInsideDiv.Count > 0;
             });
         }

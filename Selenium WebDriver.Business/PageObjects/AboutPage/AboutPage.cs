@@ -1,6 +1,6 @@
-﻿using OpenQA.Selenium;
-using Selenium_WebDriver.Core.Core;
+﻿using Selenium_WebDriver.Core.Core;
 using Selenium_WebDriver.Core.Interfaces;
+using Selenium_WebDriver.Core.Utils;
 
 namespace Selenium_WebDriver.Business.PageObjects.AboutPage
 {
@@ -13,19 +13,39 @@ namespace Selenium_WebDriver.Business.PageObjects.AboutPage
                 throw new ArgumentNullException(nameof(driverContext));
             }
 
-            this.driverContext = driverContext;
+            this._driverContext = driverContext;
         }
 
         public void ScrollToAtAGlance()
         {
-            var atAGlanceText = this.driverContext.LongWait.WaitUntilElementExists(this.aboutEpamAtAGlanceBy);
-            this.driverContext.ScrollToElement(atAGlanceText);
+            try
+            {
+                _driverContext.LongWait.WaitUntilElementExists(this._aboutEpamAtAGlanceBy);
+                _driverContext.ScrollToElement(AboutEpamAtAGlanceText);
+                LoggerUtil.Info("Scrolled to Epam At a Glance text");
+            }
+            catch (Exception ex)
+            {
+                LoggerUtil.Error("Failed to Scroll to the At a Glance Section", _aboutEpamAtAGlanceBy, ex);
+
+                throw;
+            }
         }
 
         public void ClickDownloadButton()
         {
-            var downloadButton = this.driverContext.LongWait.WaitUntilElementIsClickable(this.aboutAtAGlanceDownloadButtonBy);
-            downloadButton.Click();
+            try
+            {
+                _driverContext.LongWait.WaitUntilElementIsClickable(_aboutAtAGlanceDownloadButtonBy);
+                AboutAtAGlanceDownloadButton.Click();
+                LoggerUtil.Info("Download button clicked");
+            }
+            catch (Exception ex)
+            {
+                LoggerUtil.Error("Failed to Click At A Glance Download Button", _aboutAtAGlanceDownloadButtonBy, ex);
+
+                throw;
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Interactions;
 using Selenium_WebDriver.Core.Core;
 using Selenium_WebDriver.Core.Interfaces;
+using Selenium_WebDriver.Core.Utils;
 
 namespace Selenium_WebDriver.Business.PageObjects.InsightPage
 {
@@ -14,37 +15,53 @@ namespace Selenium_WebDriver.Business.PageObjects.InsightPage
                 throw new ArgumentNullException(nameof(driverContext));
             }
 
-            this.driverContext = driverContext;
+            this._driverContext = driverContext;
         }
 
-        public void SwipeFirstCarouselNTimes(int numberOfSwipes)
+        public void NextSlide(int numberOfSwipes)
         {
-            var activeSlide = this.WaitCarouselToBeClickable();
-            var actions = new Actions(this.driverContext.GetDriver());
-            var slider = activeSlide.FindElement(By.XPath("//div[contains(@class, 'media-content')]//div[contains(@class, 'owl-item active')]//img[contains(@class, 'single-slide__image')]"));
+            var currentSlide = CurrentActiveSlide;
             for (int i = 0; i < numberOfSwipes; i++)
             {
-                actions.ClickAndHold(slider)
-                       .MoveByOffset(-100, 0)
-                       .Release()
-                       .Perform();
+                ClickNextSlideButton();
 
-                this.driverContext.ShortWait.Until(d => !activeSlide.GetAttribute("class").Contains("active"));
-
-                activeSlide = this.WaitCarouselToBeClickable();
+                this._driverContext.ShortWait.Until(d => !currentSlide.GetAttribute("class").Contains("active"));
+                currentSlide = CurrentActiveSlide;
             }
         }
 
-        public string GetCarouselCurrentActiveElementText()
+        public string GetCarouselCurrentActiveElementTitle()
         {
-            var carouselCurrentActiveElement = this.driverContext.ShortWait.WaitUntilElementIsVisible(this.insightCarouselCurrentActiveTextBy);
-            return carouselCurrentActiveElement.Text;
+            try
+            {
+                _driverContext.ShortWait.WaitUntilElementIsVisible(_insightCarouselTitleBy);
+                var title = CurrentActiveSlideTitle.Text;
+                LoggerUtil.Info($"Obtained Current Slide Title: {title}");
+
+                return title;
+            }
+            catch (Exception ex)
+            {
+                LoggerUtil.Error("Failed to retrieve the current slide title in the carousel.", ex);
+                throw;
+            }
         }
 
         public void ClickCarouselReadMore()
         {
-            var readMoreButton = this.driverContext.ShortWait.WaitUntilElementIsClickable(this.insightCarouselReadMoreBy);
-            readMoreButton.Click();
+            try
+            {
+                _driverContext.ShortWait.WaitUntilElementIsClickable(_insightFirstCarouselReadMoreBy);
+
+                CurrentActiveSlideReadMoreButton.Click();
+
+                LoggerUtil.Info("Clicked on 'Read More' button in the carousel.");
+            }
+            catch (Exception ex)
+            {
+                LoggerUtil.Error("Failed to click on 'Read More' button in the carousel.", ex);
+                throw;
+            }
         }
     }
 }

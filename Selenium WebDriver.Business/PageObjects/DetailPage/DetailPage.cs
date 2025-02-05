@@ -1,10 +1,6 @@
 ﻿using Selenium_WebDriver.Core.Core;
 using Selenium_WebDriver.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Selenium_WebDriver.Core.Utils;
 
 namespace Selenium_WebDriver.Business.PageObjects.DetailPage
 {
@@ -17,13 +13,23 @@ namespace Selenium_WebDriver.Business.PageObjects.DetailPage
                 throw new ArgumentNullException(nameof(driverContext));
             }
 
-            this.driverContext = driverContext;
+            this._driverContext = driverContext;
         }
 
         public string GetHeaderTitleText()
         {
-            var titleElement = this.driverContext.ShortWait.WaitUntilElementIsVisible(this.detailHeaderTitleBy);
-            return titleElement.Text;
+            try
+            {
+                _driverContext.ShortWait.WaitUntilElementIsVisible(_detailHeaderTitleBy);
+                LoggerUtil.Info($"Header Title text Obtained");
+                return HeaderTitle.Text;
+            }
+            catch (Exception ex)
+            {
+                LoggerUtil.Error("Failed to Get Header Title text", _detailHeaderTitleBy, ex);
+
+                throw;
+            }
         }
     }
 }

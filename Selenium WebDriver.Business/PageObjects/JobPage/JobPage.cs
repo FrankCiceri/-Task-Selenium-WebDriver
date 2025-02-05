@@ -18,21 +18,23 @@ namespace Selenium_WebDriver.Business.PageObjects.JobPage
                 throw new ArgumentNullException(nameof(driverContext));
             }
 
-            this.driverContext = driverContext;
+            this._driverContext = driverContext;
         }
 
+        //TODO:
+        //This method should be on tests, and create methods to get the links
         public bool ValidateJobPageContains(string expectedText)
         {
-            var titleElement = this.driverContext.LongWait.WaitUntilElementIsVisible(this.jobTitleBy);
+            _driverContext.LongWait.WaitUntilElementIsVisible(_jobTitleBy);
 
-            if (titleElement.Text.Contains(expectedText, StringComparison.InvariantCultureIgnoreCase))
+            if (JobTitle.Text.Contains(expectedText, StringComparison.InvariantCultureIgnoreCase))
             {
                 return true;
             }
 
-            var listOfRequirementElements = this.driverContext.LongWait.WaitFindElements(this.jobResponsabilitiesAndRequirementsBy);
+            _driverContext.LongWait.WaitUntilElementIsVisible(_jobResponsabilitiesAndRequirementsBy);
 
-            foreach (var li in listOfRequirementElements)
+            foreach (var li in JobResponsabilitiesAndRequirements)
             {
                 if (li.Text.Contains(expectedText, StringComparison.InvariantCultureIgnoreCase))
                 {

@@ -7,6 +7,11 @@ namespace Selenium_WebDriver.Business.PageObjects.HeaderPage
 {
     public partial class HeaderPage
     {
-        private readonly IDriverContext driverContext;
+        private readonly IDriverContext _driverContext;
+
+        private void WaitHeaderSearchPanelToDeploy()
+        {
+            this._driverContext.LongWait.WaitUntilElementExists(_headerSearchPanelBy);
+        }
     }
 }

@@ -27,20 +27,16 @@ public static class DriverExtensionMethod
         }
     }
 
-    public static IWebElement WaitUntilElementExists(this WebDriverWait wait, By locator)
+    public static void WaitUntilElementExists(this WebDriverWait wait, By locator)
     {
-        return wait.Until(ExpectedConditions.ElementExists(locator));
+        wait.Until(ExpectedConditions.ElementExists(locator));
     }
 
-    public static IWebElement WaitUntilElementIsClickable(this WebDriverWait wait, By locator)
+    public static void WaitUntilElementIsClickable(this WebDriverWait wait, By locator)
     {
-        return wait.Until(ExpectedConditions.ElementToBeClickable(locator));
+        wait.Until(ExpectedConditions.ElementToBeClickable(locator));
     }
-
-    public static IWebElement WaitFindElement(this WebDriverWait wait, By locator)
-    {
-        return wait.Until(d => d.FindElement(locator));
-    }
+        
 
     public static IEnumerable<IWebElement> WaitFindElements(this WebDriverWait wait, By locator)
     {
@@ -52,38 +48,6 @@ public static class DriverExtensionMethod
         new Actions(driverContext.GetDriver())
             .MoveToElement(webElement)
             .Perform();
-    }
-
-    public static void ShortWaitElementAndClick(this IDriverContext driverContext, By locator)
-    {
-        LoggerUtil.Debug($"Attempting to click element: {locator}");
-        try
-        {
-            var element = driverContext.ShortWait.WaitUntilElementIsClickable(locator);
-            element.Click();
-            LoggerUtil.Info($"Successfully clicked element: {locator}");
-        }
-        catch (Exception ex)
-        {
-            LoggerUtil.Error($"Failed to click element: {locator}", ex);
-            throw;
-        }
-    }
-
-    public static void LongWaitElementAndClick(this IDriverContext driverContext, By locator)
-    {
-        LoggerUtil.Debug($"Attempting to click element: {locator}");
-        try
-        {
-            var element = driverContext.LongWait.WaitUntilElementIsClickable(locator);
-            element.Click();
-            LoggerUtil.Info($"Successfully clicked element: {locator}");
-        }
-        catch (Exception ex)
-        {
-            LoggerUtil.Error($"Failed to click element: {locator}", ex);
-            throw;
-        }
     }
 
     public static void GoToElementAndClick(this IDriverContext driverContext, IWebElement webElement)

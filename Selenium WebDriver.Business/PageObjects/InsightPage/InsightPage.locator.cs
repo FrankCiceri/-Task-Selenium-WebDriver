@@ -4,15 +4,18 @@ namespace Selenium_WebDriver.Business.PageObjects.InsightPage
 {
     public partial class InsightPage
     {
-        private static readonly string InsightFirstCarouselLocator = "//div[contains(@class, 'media-content')]";
-        private static readonly string InsightCarouselCurrentActiveLocator = "//div[contains(@class, 'media-content')]//div[contains(@class, 'owl-item active')]";
+        private readonly By _currentActiveSlide = By.XPath("//div[contains(@class, 'media-content')]//div[contains(@class, 'owl-item active')]");
+        private readonly By _nextCarouselSlideBy = By.XPath("//div[contains(@class, 'media-content')]//button[contains(@class, 'slider__right-arrow')]");
+        private readonly By _insightCarouselTitleBy = By.XPath("//div[contains(@class, 'media-content')]//div[contains(@class, 'owl-item active')]//span[@class = 'font-size-60']");
+        private readonly By _insightFirstCarouselReadMoreBy = By.XPath("//div[contains(@class, 'media-content')]//div[contains(@class, 'owl-item active')]//a[contains(text(), 'Read More')]");
 
-        private static readonly string InsightCarouselCurrentActiveTitleLocator = InsightCarouselCurrentActiveLocator + "//span[@class = 'font-size-60']";
-        private static readonly string InsightCarouselReadMoreLocator = InsightCarouselCurrentActiveLocator + "//a[contains(text(), 'Read More')]";
+        private IWebElement CurrentActiveSlide => _driverContext.GetDriver().FindElement(_currentActiveSlide);
 
-        private readonly By insightFirstCarouselBy = By.XPath(InsightFirstCarouselLocator);
-        private readonly By insightCarouselCurrentActiveBy = By.XPath(InsightCarouselCurrentActiveLocator);
-        private readonly By insightCarouselCurrentActiveTextBy = By.XPath(InsightCarouselCurrentActiveTitleLocator);
-        private readonly By insightCarouselReadMoreBy = By.XPath(InsightCarouselReadMoreLocator);
+        private IWebElement CurrentActiveSlideTitle => _driverContext.GetDriver().FindElement(_insightCarouselTitleBy);
+
+        private IWebElement CurrentActiveSlideReadMoreButton => _driverContext.GetDriver().FindElement(_insightFirstCarouselReadMoreBy);
+
+        private IWebElement FirstCarouselNextSlideButton => _driverContext.GetDriver().FindElement(_nextCarouselSlideBy);
+
     }
 }

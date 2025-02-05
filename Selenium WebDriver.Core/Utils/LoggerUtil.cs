@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using log4net;
 using log4net.Config;
 using log4net.Core;
+using OpenQA.Selenium;
 using Selenium_WebDriver.Core.Interfaces;
 
 namespace Selenium_WebDriver.Core.Utils
@@ -41,6 +42,8 @@ namespace Selenium_WebDriver.Core.Utils
         public static void Error(string message) => Log.Error(message);
 
         public static void Error(string message, Exception ex) => Log.Error(message, ex);
+
+        public static void Error(string message, By locator, Exception ex) => Log.Error(message + " Locator:" + locator.ToString(), ex);
 
         public static void Fatal(string message) => Log.Fatal(message);
 

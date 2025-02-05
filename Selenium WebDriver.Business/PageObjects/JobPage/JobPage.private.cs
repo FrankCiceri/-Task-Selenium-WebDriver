@@ -6,6 +6,6 @@ namespace Selenium_WebDriver.Business.PageObjects.JobPage
 {
     public partial class JobPage
     {
-        private readonly IDriverContext driverContext;
+        private readonly IDriverContext _driverContext;
     }
 }

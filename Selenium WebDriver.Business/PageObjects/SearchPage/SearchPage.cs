@@ -18,15 +18,16 @@ namespace Selenium_WebDriver.Business.PageObjects.SearchPage
                 throw new ArgumentNullException(nameof(driverContext));
             }
 
-            this.driverContext = driverContext;
+            this._driverContext = driverContext;
         }
 
+        //TODO:
+        //This method should be on tests, and create methods to get the links
         public bool ValidateLinksContain(string searchString)
         {
-            this.WaitSearchResults();
-
-            var links = this.driverContext.ShortWait.WaitFindElements(this.searchResultLinksBy);
-            var result = links.All(a => a.Text.Contains(searchString, StringComparison.InvariantCultureIgnoreCase));
+            WaitSearchResults();
+            this._driverContext.ShortWait.WaitFindElements(_searchResultLinksBy);
+            var result = SearchResultLinks.All(a => a.Text.Contains(searchString, StringComparison.InvariantCultureIgnoreCase));
 
             return result;
         }

@@ -3,6 +3,6 @@
   <TestRunParameters>
     <Parameter name ="environment" value="QA" />
     <Parameter name="driver" value="MSEdge" />
-    <Parameter name="headless" value= "true" />
+    <Parameter name="headless" value= "false" />
   </TestRunParameters>   
 </RunSettings>

@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium.Interactions;
 using Selenium_WebDriver.Core.Core;
 using Selenium_WebDriver.Core.Interfaces;
+using Selenium_WebDriver.Core.Utils;
 
 namespace Selenium_WebDriver.Business.PageObjects.HeaderPage
 {
@@ -13,53 +14,94 @@ namespace Selenium_WebDriver.Business.PageObjects.HeaderPage
                 throw new ArgumentNullException(nameof(driverContext));
             }
 
-            this.driverContext = driverContext;
+            this._driverContext = driverContext;
         }
 
         public void ClickCareersLink()
         {
-            var careersButton = this.driverContext.LongWait.WaitUntilElementIsClickable(this.headerCareersButtonBy);
-            careersButton.Click();
+            try
+            {
+                _driverContext.LongWait.WaitUntilElementIsClickable(_headerCareersButtonBy);
+                CareersButton.Click();
+                LoggerUtil.Info("Clicked on Careers link.");
+            }
+            catch (Exception ex)
+            {
+                LoggerUtil.Error("Failed to click on Careers link.", _headerCareersButtonBy, ex);
+                throw;
+            }
         }
 
         public void ClickAboutLink()
         {
-            var aboutButton = this.driverContext.LongWait.WaitUntilElementIsClickable(this.headerAboutButtonBy);
-            aboutButton.Click();
+            try
+            {
+                _driverContext.LongWait.WaitUntilElementIsClickable(_headerAboutButtonBy);
+                AboutButton.Click();
+                LoggerUtil.Info("Clicked on About link.");
+            }
+            catch (Exception ex)
+            {
+                LoggerUtil.Error("Failed to click on About link.", _headerAboutButtonBy, ex);
+                throw;
+            }
         }
 
         public void ClickInsightsLink()
         {
-            var insightsButton = this.driverContext.LongWait.WaitUntilElementIsClickable(this.headerInsightsButtonBy);
-            insightsButton.Click();
+            try
+            {
+                _driverContext.LongWait.WaitUntilElementIsClickable(_headerInsightsButtonBy);
+                InsightsButton.Click();
+                LoggerUtil.Info("Clicked on Insights link.");
+            }
+            catch (Exception ex)
+            {
+                LoggerUtil.Error("Failed to click on Insights link.", _headerInsightsButtonBy, ex);
+                throw;
+            }
         }
 
         public void ClickHeaderMagnifier()
         {
-            var magnifierElement = this.driverContext.LongWait.WaitUntilElementIsClickable(this.headerMagnifierBy);
-            magnifierElement.Click();
-        }
-
-        public void WaitHeaderSearchPanelToDeploy()
-        {
-            this.driverContext.LongWait.WaitUntilElementExists(this.headerSearchPanelBy);
+            try
+            {
+                _driverContext.LongWait.WaitUntilElementIsClickable(_headerMagnifierBy);
+                MagnifierButton.Click();
+                LoggerUtil.Info("Clicked on Header Magnifier.");
+                WaitHeaderSearchPanelToDeploy();
+            }
+            catch (Exception ex)
+            {
+                LoggerUtil.Error("Failed to click on Header Magnifier.", _headerMagnifierBy, ex);
+                throw;
+            }
         }
 
         public void EnterHeaderPanelSearch(string searchString)
         {
-            var searchField = this.driverContext.ShortWait.WaitFindElement(this.headerSearchTextfieldBy);
-            this.driverContext.GoToElementAndClick(searchField);
+            try
+            {
+                _driverContext.ShortWait.WaitUntilElementIsClickable(_headerSearchTextfieldBy);
+                this._driverContext.GoToElementAndClick(SearchTextField);
 
-            new Actions(this.driverContext.GetDriver())
-                .Pause(TimeSpan.FromSeconds(1))
-                .SendKeys(searchString)
-                .Perform();
+                new Actions(this._driverContext.GetDriver())
+                    .Pause(TimeSpan.FromSeconds(1))
+                    .SendKeys(searchString)
+                    .Perform();
+            }
+            catch (Exception ex)
+            {
+                LoggerUtil.Error("Failed to enter search on Header SearchPanel.", _headerMagnifierBy, ex);
+                throw;
+            }
+
         }
 
         public void ClickHeaderPanelSearchButton()
         {
-            var searchButton = this.driverContext.ShortWait.WaitUntilElementIsClickable(this.headerPanelFindButtonBy);
-            searchButton.Click();
+            _driverContext.ShortWait.WaitUntilElementIsClickable(_headerPanelFindButtonBy);
+            FindButton.Click();
         }
     }
 }
