@@ -36,7 +36,6 @@ public static class DriverExtensionMethod
     {
         wait.Until(ExpectedConditions.ElementToBeClickable(locator));
     }
-        
 
     public static IEnumerable<IWebElement> WaitFindElements(this WebDriverWait wait, By locator)
     {

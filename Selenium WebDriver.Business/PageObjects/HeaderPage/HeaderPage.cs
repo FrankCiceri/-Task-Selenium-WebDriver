@@ -32,6 +32,43 @@ namespace Selenium_WebDriver.Business.PageObjects.HeaderPage
             }
         }
 
+        public void HoverServicesLink()
+        {
+            try
+            {
+                _driverContext.LongWait.WaitUntilElementIsVisible(_headerServicesButton);
+
+                new Actions(_driverContext.GetDriver())
+                    .MoveToElement(ServicesButton)
+                    .Pause(TimeSpan.FromSeconds(1))
+                    .Perform();
+                LoggerUtil.Info("Moved to Services link.");
+            }
+            catch (Exception ex)
+            {
+                LoggerUtil.Error("Failed to move to Services link.", _headerServicesButton, ex);
+                throw;
+            }
+        }
+
+        public void ClickServiceItem(string service)
+        {
+            try
+            {
+                if (_driverContext.IsElementVisible(_headerServicesDropdownItems))
+                {
+                    var serviceElement = GetServiceItem(service);
+
+                    serviceElement.Click();
+                }
+            }
+            catch (Exception ex)
+            {
+                LoggerUtil.Error("Failed to click Service item", ex);
+                throw;
+            }
+        }
+
         public void ClickAboutLink()
         {
             try
@@ -95,7 +132,6 @@ namespace Selenium_WebDriver.Business.PageObjects.HeaderPage
                 LoggerUtil.Error("Failed to enter search on Header SearchPanel.", _headerMagnifierBy, ex);
                 throw;
             }
-
         }
 
         public void ClickHeaderPanelSearchButton()
