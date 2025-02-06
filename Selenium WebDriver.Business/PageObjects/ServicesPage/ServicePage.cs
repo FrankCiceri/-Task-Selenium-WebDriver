@@ -4,9 +4,9 @@ using Selenium_WebDriver.Core.Interfaces;
 
 namespace Selenium_WebDriver.Business.PageObjects.ServicesPage
 {
-    public partial class ServicesPage
+    public partial class ServicePage
     {
-        public ServicesPage(IDriverContext driverContext)
+        public ServicePage(IDriverContext driverContext)
         {
             if (driverContext is null)
             {
@@ -21,9 +21,9 @@ namespace Selenium_WebDriver.Business.PageObjects.ServicesPage
             return ServiceTitle.Text;
         }
 
-        public bool IsDisplayedOurExpertiseSection()
+        public IWebElement GetOurExpertiseSection()
         {
-            return OurExpertiseSection.Displayed;
+            return OurExpertiseSection;
         }
     }
 }

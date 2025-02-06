@@ -51,7 +51,7 @@ namespace Selenium_WebDriver.Business.PageObjects.HeaderPage
             }
         }
 
-        public void ClickServiceItem(string service)
+        public void ClickServiceMenuItem(string service)
         {
             try
             {

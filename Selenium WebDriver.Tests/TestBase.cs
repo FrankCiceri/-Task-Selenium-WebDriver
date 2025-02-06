@@ -4,10 +4,6 @@ using Selenium_WebDriver.Core.Interfaces;
 using Selenium_WebDriver.Core.Core;
 using Selenium_WebDriver.Core.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Selenium_WebDriver.Core.Utils;
 
 namespace Selenium_WebDriver.Tests

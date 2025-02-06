@@ -2,7 +2,7 @@
 
 namespace Selenium_WebDriver.Business.PageObjects.ServicesPage
 {
-    public partial class ServicesPage
+    public partial class ServicePage
     {
         private IDriverContext _driverContext;
     }

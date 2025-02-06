@@ -20,7 +20,7 @@ namespace Selenium_WebDriver.Business.PageObjects.HeaderPage
         {
             try
             {
-                var serviceElement = ServicesDropdownItems.FirstOrDefault(elem => elem.Text.Trim().Contains(service.Trim(), StringComparison.InvariantCultureIgnoreCase));
+                var serviceElement = ServicesDropdownItems.FirstOrDefault(elem => elem.Text.Trim().Equals(service.Trim(), StringComparison.InvariantCultureIgnoreCase));
                 return serviceElement;
             }
             catch (Exception ex)
