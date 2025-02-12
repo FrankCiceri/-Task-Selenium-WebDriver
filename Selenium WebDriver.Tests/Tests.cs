@@ -16,6 +16,7 @@ using Selenium_WebDriver.Tests.TestData;
 
 namespace Selenium_WebDriver.Tests
 {
+    [TestFixture]
     public class Tests : TestBase
     {
         private IDriverContext _driverContext;
