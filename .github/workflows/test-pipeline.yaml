@@ -69,7 +69,10 @@ jobs:
       - name: Run UI Tests
         working-directory: ./Selenium WebDriver.Tests
         run: |
-          dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=UI" --logger "trx;LogFileName=UI_TestResults.trx" --TestRunParameters.Parameter(name="driver", value="${{ github.event.inputs.browser }}")
+            dotnet test "Selenium WebDriver.Test.csproj" \
+            --filter "TestCategory=API" \
+            --logger "trx;LogFileName=UI_TestResults.trx" \
+            -- TestRunParameters.Parameter(name=\"driver\", value=\"${{ github.event.inputs.driver }}\")
 
       - name: Upload UI Test Results
         uses: actions/upload-artifact@v4
