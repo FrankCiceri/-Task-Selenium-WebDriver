@@ -31,5 +31,14 @@ namespace Selenium_WebDriver.Business.PageObjects.SearchPage
 
             return result;
         }
+
+        public bool ValidateTextContain(string searchString)
+        {
+            WaitSearchResults();
+            this._driverContext.ShortWait.WaitFindElements(_searchResultTextBy);
+            var result = SearchResultTexts.All(a => a.Text.Contains(searchString, StringComparison.InvariantCultureIgnoreCase));
+
+            return result;
+        }
     }
 }
