@@ -30,7 +30,7 @@ jobs:
           dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=API" --logger "trx;LogFileName=API_TestResults.trx"
 
       - name: Upload API Test Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: api-test-results
           path: TestResults/API_TestResults.trx
