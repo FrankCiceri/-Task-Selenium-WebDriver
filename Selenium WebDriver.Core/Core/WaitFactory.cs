@@ -21,7 +21,7 @@ namespace Selenium_WebDriver.Core.Core
 
         public WebDriverWait CreateLongWait(IWebDriver driver)
         {
-            return new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+            return new WebDriverWait(driver, TimeSpan.FromSeconds(20))
             {
                 PollingInterval = TimeSpan.FromSeconds(0.5),
             };

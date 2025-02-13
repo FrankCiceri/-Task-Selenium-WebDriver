@@ -1,10 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Selenium WebDriver",
     "\\Selenium WebDriver.Business",
-    "\\Selenium WebDriver.Core"
+    "\\Selenium WebDriver.Business\\PageObjects",
+    "\\Selenium WebDriver.Business\\PageObjects\\HeaderPage",
+    "\\Selenium WebDriver.Core",
+    "\\Selenium WebDriver.Core\\Core",
+    "\\Selenium WebDriver.Tests",
+    "\\Selenium WebDriver.Tests\\Specflow Tests",
+    "\\Selenium WebDriver.Tests\\TestData",
+    "\\Selenium WebDriver.Tests\\TestData\\TestDataResources"
   ],
-  "SelectedNode": "\\Selenium WebDriver.Core\\Selenium WebDriver.Core.csproj",
+  "SelectedNode": "\\Selenium WebDriver.Tests\\TestData\\TestDataResources\\testdataQA.json",
   "PreviewInSolutionExplorer": false
 }
