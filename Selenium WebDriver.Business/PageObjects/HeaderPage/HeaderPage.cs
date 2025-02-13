@@ -37,6 +37,7 @@ namespace Selenium_WebDriver.Business.PageObjects.HeaderPage
             try
             {
                 _driverContext.LongWait.WaitUntilElementIsVisible(_headerServicesButton);
+                _driverContext.LongWait.WaitUntilElementIsClickable(_headerServicesButton);
 
                 new Actions(_driverContext.GetDriver())
                     .MoveToElement(ServicesButton)
