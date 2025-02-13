@@ -46,7 +46,7 @@ namespace Selenium_WebDriver.Tests.TestData
         private static string LoadJsonData()
         {
             var environment = TestContext.Parameters["environment"];
-            var testDataFile = !string.IsNullOrEmpty(environment) ? SelectJsonEnvironment(environment) : "QA";
+            var testDataFile = !string.IsNullOrEmpty(environment) ? SelectJsonEnvironment(environment) : "testdataQA.json";
             return !string.IsNullOrEmpty(testDataFile) ? File.ReadAllText(testDataFile) : string.Empty;
         }
 
