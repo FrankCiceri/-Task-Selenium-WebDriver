@@ -23,7 +23,9 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore Dependencies
-        run: dotnet restore "Selenium WebDriver.sln"
+        run: |
+            cd "Selenium WebDriver.Tests"
+            dotnet restore "Selenium WebDriver.sln"
 
       - name: Run API Tests
         run: |
@@ -49,7 +51,9 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore Dependencies
-        run: dotnet restore "Selenium WebDriver.sln"
+        run: |
+            cd "Selenium WebDriver.Tests"
+            dotnet restore "Selenium WebDriver.sln"
 
       - name: Run UI Tests
         run: |
