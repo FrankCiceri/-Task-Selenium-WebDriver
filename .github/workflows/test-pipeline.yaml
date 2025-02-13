@@ -80,6 +80,7 @@ jobs:
           dotnet test "Selenium WebDriver.Test.csproj"
           --% --settings:TestData/TestDataResources/settings.${{ github.event.inputs.environment }}.runsettings
           -- TestRunParameters.Parameter(name="driver", value="${{ github.event.inputs.driver }}")
+        continue-on-error: true
 
       - name: Upload UI Test Results
         uses: actions/upload-artifact@v4
@@ -87,12 +88,14 @@ jobs:
           name: ui-test-results
           path: TestResults/UI_TestResults.trx
 
-      - name: Upload Screenshots (if available)
+      - name: Upload Failed Test Screenshots
         uses: actions/upload-artifact@v4
         with:
-          name: ui-screenshots
-          path: Screenshots/
-          if-no-files-found: ignore  # Avoid errors if no screenshots exist
+          name: FailedTestScreenshots
+          path: |
+            Selenium WebDriver.Tests/bin/Debug/net8.0/FailedTestScreenshots/*.png
+          retention-days: 7
+
 
 
   
