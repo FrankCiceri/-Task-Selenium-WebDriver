@@ -56,13 +56,13 @@ jobs:
           dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=UI" --logger "trx;LogFileName=UI_TestResults.trx"
 
       - name: Upload UI Test Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ui-test-results
           path: TestResults/UI_TestResults.trx
 
       - name: Upload Screenshots (if available)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ui-screenshots
           path: Screenshots/
