@@ -8,6 +8,16 @@ on:
     - cron: '0 3 * * 1'  # Runs every Monday at 03:00 UTC
     - cron: '*/25 * * * *'  # Runs every 25 minutes
   workflow_dispatch:  # Allows manual execution
+    inputs:
+      browser:
+        description: "Select the browser for UI tests"
+        required: true
+        default: "Chrome"
+        type: choice
+        options:
+          - Chrome
+          - Firefox
+          - MSEDGE
 
 jobs:
   api-tests:
@@ -30,7 +40,7 @@ jobs:
       - name: Run API Tests
         working-directory: ./Selenium WebDriver.Tests
         run: |
-          dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=API" --logger "trx;LogFileName=API_TestResults.trx"
+          dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=API" --logger "trx;LogFileName=API_TestResults.trx" --TestRunParameters.Parameter(name="driver", value="${{ github.event.inputs.browser }}")
 
       - name: Upload API Test Results
         uses: actions/upload-artifact@v4
@@ -59,7 +69,7 @@ jobs:
       - name: Run UI Tests
         working-directory: ./Selenium WebDriver.Tests
         run: |
-          dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=UI" --logger "trx;LogFileName=UI_TestResults.trx"
+          dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=UI" --logger "trx;LogFileName=UI_TestResults.trx" --TestRunParameters.Parameter(name="driver", value="${{ github.event.inputs.browser }}")
 
       - name: Upload UI Test Results
         uses: actions/upload-artifact@v4
