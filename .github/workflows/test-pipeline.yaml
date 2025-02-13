@@ -9,7 +9,7 @@ on:
     - cron: '*/25 * * * *'  # Runs every 25 minutes
   workflow_dispatch:  # Allows manual execution
     inputs:
-      browser:
+      driver:
         description: "Select the browser for UI tests"
         required: true
         default: "Chrome"
