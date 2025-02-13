@@ -40,7 +40,7 @@ jobs:
       - name: Run API Tests
         working-directory: ./Selenium WebDriver.Tests
         run: |
-          dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=API" --logger "trx;LogFileName=API_TestResults.trx" --TestRunParameters.Parameter(name="driver", value="${{ github.event.inputs.browser }}")
+          dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=API" --logger "trx;LogFileName=API_TestResults.trx"
 
       - name: Upload API Test Results
         uses: actions/upload-artifact@v4
