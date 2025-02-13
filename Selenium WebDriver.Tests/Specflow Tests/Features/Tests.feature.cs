@@ -21,12 +21,14 @@ namespace Selenium_WebDriver.Tests.SpecflowTests.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Validate Navigation to Services Section")]
+    [NUnit.Framework.CategoryAttribute("UI")]
     public partial class ValidateNavigationToServicesSectionFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "UI"};
         
 #line 1 "Tests.feature"
 #line hidden
@@ -84,7 +86,7 @@ namespace Selenium_WebDriver.Tests.SpecflowTests.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("ServiceCategory", serviceCategory);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate Navigation to Services Category", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 8
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,19 +96,19 @@ namespace Selenium_WebDriver.Tests.SpecflowTests.Features
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
     testRunner.Given("I am on the EPAM homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 10
     testRunner.When("I hover over the Services menu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 11
     testRunner.And(string.Format("I select \"{0}\" from the dropdown", serviceCategory), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
     testRunner.Then(string.Format("the page title should be \"{0}\"", serviceCategory), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 13
     testRunner.And("the \"Our Related Expertise\" section should be visible", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
