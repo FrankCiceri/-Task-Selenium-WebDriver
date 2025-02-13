@@ -28,6 +28,7 @@ jobs:
             dotnet restore "Selenium WebDriver.sln"
 
       - name: Run API Tests
+        working-directory: ./Selenium WebDriver.Tests
         run: |
           dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=API" --logger "trx;LogFileName=API_TestResults.trx"
 
@@ -56,6 +57,7 @@ jobs:
             dotnet restore "Selenium WebDriver.sln"
 
       - name: Run UI Tests
+        working-directory: ./Selenium WebDriver.Tests
         run: |
           dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=UI" --logger "trx;LogFileName=UI_TestResults.trx"
 
