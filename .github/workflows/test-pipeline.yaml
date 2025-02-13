@@ -1,4 +1,4 @@
-name: .NET Test Automation Pipeline
+﻿name: .NET Test Automation Pipeline
 
 on:
   pull_request:
@@ -10,16 +10,63 @@ on:
   workflow_dispatch:  # Allows manual execution
 
 jobs:
-  build:
-    name: Build and tests 
+  api-tests:
+    name: Run API Tests
+    runs-on: windows-latest  
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Run API Tests
+        run: |
+          dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=API" --logger "trx;LogFileName=API_TestResults.trx"
+
+      - name: Upload API Test Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: api-test-results
+          path: TestResults/API_TestResults.trx
+
+  ui-tests:
+    name: Run UI Tests
+    needs: api-tests  # UI runs after API, but still runs if API fails
     runs-on: windows-latest
     steps:
-    - name: Checkout code 
-      uses: actions/checkout@v2
-    
-    - name: Setup .NET 
-      uses: actions/setup-dotnet@v1 
-      with:  
-        dotnet-version: '8.0.x' 
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Run UI Tests
+        run: |
+          dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=UI" --logger "trx;LogFileName=UI_TestResults.trx"
+
+      - name: Upload UI Test Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: ui-test-results
+          path: TestResults/UI_TestResults.trx
+
+      - name: Upload Screenshots (if available)
+        uses: actions/upload-artifact@v3
+        with:
+          name: ui-screenshots
+          path: Screenshots/
+          if-no-files-found: ignore  # Avoid errors if no screenshots exist
+
 
   
