@@ -69,8 +69,8 @@ jobs:
       - name: Run UI Tests
         working-directory: ./Selenium WebDriver.Tests
         run: |
-          $driver = "${{ github.event.inputs.driver != '' && github.event.inputs.driver || 'Chrome' }}"
-          dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=UI" -- TestRunParameters.Parameter(name='driver', value="$driver")
+          dotnet test "Selenium WebDriver.Test.csproj" --filter "TestCategory=UI" --test-run-parameters "driver=${{ github.event.inputs.driver || 'Chrome' }}"
+        shell: pwsh
 
       - name: Upload UI Test Results
         uses: actions/upload-artifact@v4
