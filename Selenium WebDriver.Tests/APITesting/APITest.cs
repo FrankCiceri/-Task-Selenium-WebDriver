@@ -27,6 +27,7 @@ namespace Selenium_WebDriver.Tests.APITesting
         }
 
         [Test]
+        [Category("API")]
         public async Task VerifyThatGetAllUnicornsResourceReturnsOkStatusCode()
         {
             var response = await _jsonPlaceHolderClient.GetUsersAsync();
@@ -38,6 +39,7 @@ namespace Selenium_WebDriver.Tests.APITesting
         }
 
         [Test]
+        [Category("API")]
         public async Task VerifyThatGetAllUsersReturnsOkAndValidContentType()
         {
             var response = await _jsonPlaceHolderClient.GetUsersAsync();
@@ -56,6 +58,7 @@ namespace Selenium_WebDriver.Tests.APITesting
         }
 
         [Test]
+        [Category("API")]
         public async Task VerifyThatListOfUsersValuesAreNotEmptyReturnsOKStatusCode()
         {
             var response = await _jsonPlaceHolderClient.GetUsersAsync();
@@ -81,6 +84,7 @@ namespace Selenium_WebDriver.Tests.APITesting
         }
 
         [TestCase("Frank", "FRK")]
+        [Category("API")]
         public async Task VerifyThatUserCanBeCreated(string name, string username)
         {
             var response = await _jsonPlaceHolderClient.AddUserAsync(name, username);
@@ -96,6 +100,7 @@ namespace Selenium_WebDriver.Tests.APITesting
         }
 
         [Test]
+        [Category("API")]
         public async Task VerifyThatResourceDoesNotExists()
         {
             var response = await _jsonPlaceHolderClient.GetInvalidEndPointAsync();

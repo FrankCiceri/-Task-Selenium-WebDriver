@@ -33,6 +33,7 @@ namespace Selenium_WebDriver.Tests
         }
 
         [TestCaseSource(typeof(TestDataLoader), nameof(TestDataLoader.LoadTestDataForTest1))]
+        [Category("UI")]
         public void Test1(string programmingLanguage, string location)
         {
             var header = new HeaderPage(this._driverContext);
@@ -53,6 +54,7 @@ namespace Selenium_WebDriver.Tests
         }
 
         [TestCaseSource(typeof(TestDataLoader),nameof(TestDataLoader.LoadTestDataForTest2))]
+        [Category("UI")]
         public void Test2(string searchValue)
         {
             var header = new HeaderPage(this._driverContext);
@@ -67,6 +69,7 @@ namespace Selenium_WebDriver.Tests
         }
 
         [TestCase("EPAM_Corporate_Overview_Q4_EOY")]
+        [Category("UI")]
         public void Test3(string fileName)
         {
             var header = new HeaderPage(this._driverContext);
@@ -83,6 +86,7 @@ namespace Selenium_WebDriver.Tests
         }
 
         [TestCase(2)]
+        [Category("UI")]
         public void Test4(int numSwipes)
         {
             var header = new HeaderPage(this._driverContext);

@@ -1,4 +1,5 @@
-﻿Feature: Validate Navigation to Services Section
+﻿@UI
+Feature: Validate Navigation to Services Section
 
   As a user
   I want to navigate to a service category from the Services menu
