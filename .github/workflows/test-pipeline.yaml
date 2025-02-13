@@ -1,0 +1,25 @@
+name: .NET Test Automation Pipeline
+
+on:
+  pull_request:
+    branches:
+     - APITesting
+  schedule:
+    - cron: '0 3 * * 1'  # Runs every Monday at 03:00 UTC
+    - cron: '*/25 * * * *'  # Runs every 25 minutes
+  workflow_dispatch:  # Allows manual execution
+
+jobs:
+  build:
+    name: Build and tests 
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code 
+      uses: actions/checkout@v2
+    
+    - name: Setup .NET 
+      uses: actions/setup-dotnet@v1 
+      with:  
+        dotnet-version: '8.0.x' 
+
+  
