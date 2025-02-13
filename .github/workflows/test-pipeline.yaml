@@ -79,7 +79,7 @@ jobs:
         run: >
           dotnet test "Selenium WebDriver.Test.csproj"
           --% --settings:TestData/TestDataResources/settings.${{ github.event.inputs.environment }}.runsettings
-          -- TestRunParameters.Parameter(name=\"driver\", value=\"${{ github.event.inputs.driver }}\")
+          -- TestRunParameters.Parameter(name="driver", value="${{ github.event.inputs.driver }}")
 
       - name: Upload UI Test Results
         uses: actions/upload-artifact@v4
