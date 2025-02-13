@@ -3,7 +3,7 @@
 on:
   pull_request:
     branches:
-     - APITesting
+     - master
   schedule:
     - cron: '0 3 * * 1'  # Runs every Monday at 03:00 UTC
     - cron: '*/25 * * * *'  # Runs every 25 minutes
