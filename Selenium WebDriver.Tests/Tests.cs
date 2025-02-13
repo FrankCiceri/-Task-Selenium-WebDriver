@@ -95,7 +95,7 @@ namespace Selenium_WebDriver.Tests
 
             header.ClickInsightsLink();
             insightPage.NextSlide(numSwipes);
-            var carouselTitle = insightPage.GetCarouselCurrentActiveElementTitle();
+            var carouselTitle = insightPage.GetCarouselCurrentActiveElementTitle().Trim();
             insightPage.ClickCarouselReadMore();
 
             var detailPageTitle = detailPage.GetHeaderTitleText();
