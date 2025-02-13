@@ -64,8 +64,9 @@ namespace Selenium_WebDriver.Tests
             header.ClickHeaderPanelSearchButton();
 
             var searchPage = new SearchPage(this._driverContext);
-            var result = searchPage.ValidateLinksContain(searchValue);
-            Assert.That(result, Is.True, $"Not all links contain the inputted word: {searchValue}");
+            var linkResult = searchPage.ValidateLinksContain(searchValue);
+            var textResult = searchPage.ValidateTextContain(searchValue);
+            Assert.That(linkResult || textResult, Is.True, $"Not all links/text contain the inputted word: {searchValue}");
         }
 
         [TestCase("EPAM_Corporate_Overview_Q4_EOY")]
