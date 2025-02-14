@@ -81,7 +81,8 @@ jobs:
       - name: Run UI Tests
         working-directory: ./Selenium WebDriver.Tests
         run: >
-          dotnet test "Selenium WebDriver.Test.csproj"
+          dotnet test "Selenium WebDriver.Test.csproj" 
+          --filter "TestCategory=UI"
           --% --settings:TestData/TestDataResources/settings.${{ env.TEST_ENV }}.runsettings
           -- TestRunParameters.Parameter(name="driver", value="${{ env.DRIVER }}")
         continue-on-error: true
