@@ -26,6 +26,14 @@ on:
         options:
           - QA
           - Prod
+      headless:
+        description: "Select headless"
+        required: false
+        default: false
+        type: choice
+        options:
+          - "true"
+          - "false"
 
 jobs:
   api-tests:
@@ -63,7 +71,7 @@ jobs:
     env:
       TEST_ENV: ${{ github.event_name == 'pull_request' && 'QA' || github.event.inputs.environment }}
       DRIVER: ${{ github.event_name == 'pull_request' && 'Chrome' || github.event.inputs.driver }}
-
+      HEADLESS: ${{ github.event_name == 'pull_request' && 'false' || github.event.inputs.headless }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -85,6 +93,7 @@ jobs:
           --filter "TestCategory=UI"
           --% --settings:TestData/TestDataResources/settings.${{ env.TEST_ENV }}.runsettings
           -- TestRunParameters.Parameter(name="driver", value="${{ env.DRIVER }}")
+          -- TestRunParameters.Parameter(name="headless", value="${{ env.HEADLESS }}")
         continue-on-error: true
 
       - name: Upload UI Test Results
