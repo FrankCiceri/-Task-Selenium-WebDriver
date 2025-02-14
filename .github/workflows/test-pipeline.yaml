@@ -3,7 +3,7 @@
 on:
   pull_request:
     branches:
-     - master
+      - master
   schedule:
     - cron: '0 3 * * 1'  # Runs every Monday at 03:00 UTC
     - cron: '*/25 * * * *'  # Runs every 25 minutes
@@ -42,8 +42,8 @@ jobs:
 
       - name: Restore Dependencies
         run: |
-            cd "Selenium WebDriver.Tests"
-            dotnet restore "Selenium WebDriver.sln"
+          cd "Selenium WebDriver.Tests"
+          dotnet restore "Selenium WebDriver.sln"
 
       - name: Run API Tests
         working-directory: ./Selenium WebDriver.Tests
@@ -60,6 +60,10 @@ jobs:
     name: Run UI Tests
     needs: api-tests  # UI runs after API, but still runs if API fails
     runs-on: windows-latest
+    env:
+      TEST_ENV: ${{ github.event_name == 'pull_request' && 'QA' || github.event.inputs.environment }}
+      DRIVER: ${{ github.event_name == 'pull_request' && 'Chrome' || github.event.inputs.driver }}
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -71,15 +75,16 @@ jobs:
 
       - name: Restore Dependencies
         run: |
-            cd "Selenium WebDriver.Tests"
-            dotnet restore "Selenium WebDriver.sln"
+          cd "Selenium WebDriver.Tests"
+          dotnet restore "Selenium WebDriver.sln"
 
       - name: Run UI Tests
         working-directory: ./Selenium WebDriver.Tests
         run: >
-          dotnet test "Selenium WebDriver.Test.csproj"
-          --% --settings:TestData/TestDataResources/settings.${{ github.event.inputs.environment }}.runsettings
-          -- TestRunParameters.Parameter(name="driver", value="${{ github.event.inputs.driver }}")
+          dotnet test "Selenium WebDriver.Test.csproj" 
+          --filter "TestCategory=UI"
+          --% --settings:TestData/TestDataResources/settings.${{ env.TEST_ENV }}.runsettings
+          -- TestRunParameters.Parameter(name="driver", value="${{ env.DRIVER }}")
         continue-on-error: true
 
       - name: Upload UI Test Results
@@ -95,7 +100,3 @@ jobs:
           path: |
             Selenium WebDriver.Tests/bin/Debug/net8.0/FailedTestScreenshots/*.png
           retention-days: 7
-
-
-
-  
